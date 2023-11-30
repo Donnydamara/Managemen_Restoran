@@ -40,6 +40,7 @@
                         </a>
                     </li>
                 @endif
+
                 @if (Auth::check() && Auth::user()->role == '1')
                     {{-- Admin --}}
                     <li class="nav-item">
@@ -58,6 +59,21 @@
                         </a>
                     </li>
                 @endif
+                @if (Auth::check() && Auth::user()->role == '0')
+                    {{-- Admin --}}
+                    <li class="nav-item">
+                        <a href="{{ route('users.index') }}" class="nav-link">
+                            <i class="nav-icon fa fa-user"></i>
+                            <p>Managemen User</p>
+                        </a>
+                    </li>
+                @endif
+                <li class="nav-item">
+                    <a href="{{ route('about') }}" class="nav-link">
+                        <i class="nav-icon fa fa-about"></i>
+                        <p>About</p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <form id="logout-form" action="{{ route('logout') }}" method="post">
                         @csrf

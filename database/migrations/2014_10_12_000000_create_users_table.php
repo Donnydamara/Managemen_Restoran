@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('no_hp', 255);
             $table->string('tanggal_lahir', 255);
             $table->string('tempat_lahir', 255);
+            $table->string('photo_path')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -34,6 +35,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('users');
     }
 }

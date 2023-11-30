@@ -5,6 +5,7 @@
         {{-- Anything you want --}}
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; {{date('Y')}} <a href="{{route('dashboard')}}">{{config('app.name')}}</a>.</strong> All rights
+    <strong>Copyright &copy; {{ date('Y') }} <a href="{{ route('about') }}">{{ config('app.name') }}</a>.</strong>
+    All rights
     reserved.
 </footer>

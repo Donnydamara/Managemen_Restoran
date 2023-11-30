@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -13,7 +14,7 @@ class DashboardController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -23,6 +24,21 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $user = Auth::user();
+        $dashboardRoute = $this->getDashboardRoute($user->role);
+
+        return redirect($dashboardRoute);
+    }
+
+    private function getDashboardRoute($role)
+    {
+        switch ($role) {
+            case '0':
+                return route('admin.dashboard');
+            case '1':
+                return route('manager.dashboard');
+            case '2':
+                return route('kasir.dashboard');
+        }
     }
 }
