@@ -27,6 +27,9 @@ Auth::routes(['verify' => false, 'reset' => false]);
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('/about', 'AboutController@index')->name('about');
+    Route::get('/profile', [UserController::class, 'showProfile'])->name('profile.show');
+    Route::get('/profile/edit', [UserController::class, 'editProfile'])->name('profile.edit');
+    Route::put('/profile/update', [UserController::class, 'updateProfile'])->name('profile.update');
 });
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {

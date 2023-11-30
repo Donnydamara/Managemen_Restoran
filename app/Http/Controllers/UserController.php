@@ -15,23 +15,64 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function indexJson()
+    public function showProfile()
     {
-        $users = User::all();
+        // Mengambil data user yang sedang login
+        $user = auth()->user();
 
-        return response()->json(['users' => $users]);
+        // Menampilkan halaman profil
+        return view('profile.show', compact('user'));
     }
-    public function index()
+    public function editProfile()
     {
-        $users = User::all();
-        return view('users.index', compact('users'));
+        $user = auth()->user();
+
+        return view('profile.edit', compact('user'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function updateProfile(Request $request)
+    {
+        $id = auth()->user()->id;
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $id],
+            'no_hp' => ['required', 'string', 'max:255'],
+            'tanggal_lahir' => ['required', 'string', 'max:255'],
+            'tempat_lahir' => ['required', 'string', 'max:255'],
+            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
+            'role' => ['required', 'integer', 'in:0,1,2'],
+            'photo' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+        ]);
+
+        $user = User::find($id);
+
+        $fileName = $user->photo_path;
+
+        if ($request->hasFile('photo')) {
+            // Hapus gambar lama jika ada
+            if ($user->photo_path) {
+                unlink(public_path('image/profil/' . $user->photo_path));
+            }
+
+            $fileName = 'foto-' . uniqid() . '.' . $request->photo->extension();
+            $request->photo->move(public_path('image/profil'), $fileName);
+        }
+
+        if ($request->filled('password')) {
+            $request->merge(['password' => Hash::make($request->password)]);
+        } else {
+            $request->request->remove('password');
+        }
+
+        $request->merge(['photo_path' => $fileName]);
+
+        $user->update($request->all());
+
+        return redirect()->route('profile.show')->with('success', 'User updated successfully');
+    }
+
     public function create()
     {
         return view('users.create');
