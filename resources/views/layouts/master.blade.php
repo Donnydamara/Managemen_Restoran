@@ -8,6 +8,9 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <!-- Theme style -->
@@ -35,6 +38,7 @@
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
+    @include('sweetalert::alert')
 
     <!-- jQuery -->
     <script src="{{ asset('js/jquery.min.js') }}"></script>

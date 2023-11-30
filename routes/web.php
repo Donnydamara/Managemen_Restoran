@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\MenuController;
+//use App\Kategori;
+//use App\Menu;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
@@ -62,6 +65,44 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 // ============================================== Manager System =====================================================//
 Route::prefix('manager')->middleware(['auth', 'manager'])->group(function () {
     Route::get('/dashboard', 'ManagerDashboardController@index')->name('manager.dashboard');
+
+    // Show Kategori Menu
+    Route::get('/kategori', 'KategoriController@index')->name('manager.kategori');
+
+    // route untuk menampilkan view create kategori
+    Route::get('/createkategori', 'KategoriController@create')->name('createKategori');
+
+    // route untuk menyimpan kategori, perhatikan bahwa fungsi route nya adalah post
+    Route::post('/createkategori', 'KategoriController@store')->name('storeKategori');
+
+    // route untuk menampilkan view edit kategori
+    //Route::get('/{kategori}/editkategori', 'KategoriController@edit')->name('editKategori');
+    Route::get('/{kategori}/editkategori', [KategoriController::class, 'edit'])->name('editKategori');
+
+    // route untuk menyimpan perubahan kategori, perhatikan bahwa fungsi routenya adalah post
+    //Route::post('/{kategori}/editkategori', 'KategoriController@update')->name('updateKategori');
+    Route::put('/{kategori}', [KategoriController::class, 'update'])->name('updateKategori');
+
+    // route untuk menghapus kategori 
+    Route::get('/{kategori}/delete', 'KategoriController@destroy')->name('deleteKategori');
+
+    // Show Menu
+    Route::get('/menu', 'MenuController@index')->name('manager.menu');
+
+    // route untuk menampilkan view create menu
+    Route::get('/createmenu', 'MenuController@create')->name('createMenu');
+
+    // route untuk menyimpan menu, perhatikan bahwa fungsi route nya adalah post
+    Route::post('/createmenu', 'MenuController@store')->name('storeMenu');
+
+    // route untuk menampilkan view edit menu
+    Route::get('/{menu}/editmenu', 'MenuController@edit')->name('editMenu');
+
+    // route untuk menyimpan perubahan menu, perhatikan bahwa fungsi routenya adalah post
+    Route::post('/{menu}/editmenu', 'MenuController@update')->name('updateMenu');
+
+    // route untuk menghapus menu
+    Route::get('/menu/{menu}/delete', 'MenuController@destroy')->name('deleteMenu');
 });
 
 // ============================================== Kasir System =====================================================//
