@@ -18,7 +18,7 @@ class CreatePesananTable extends Migration
             $table->integer('id_user');
             $table->string('no_pesanan', 255);
             $table->string('jenis_pembayaran')->nullable(false)->change();
-            $table->string('jenis_pesanan'->nullable(false)->change());
+            $table->string('jenis_pesanan')->nullable(false)->change();
             $table->integer('status')->default('0');
             $table->timestamps();
         });
