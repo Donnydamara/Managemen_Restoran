@@ -17,8 +17,8 @@ class CreatePesananTable extends Migration
             $table->bigIncrements('id_pesanan');
             $table->integer('id_user');
             $table->string('no_pesanan', 255);
-            $table->string('jenis_pembayaran')->nullable(false)->change();
-            $table->string('jenis_pesanan')->nullable(false)->change();
+            $table->string('jenis_pembayaran')->nullable();
+            $table->string('jenis_pesanan')->nullable();
             $table->integer('status')->default('0');
             $table->timestamps();
         });

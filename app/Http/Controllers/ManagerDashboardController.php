@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Menu;
+use App\Kategori;
 
 class ManagerDashboardController extends Controller
 {
@@ -23,6 +25,8 @@ class ManagerDashboardController extends Controller
      */
     public function index()
     {
-        return view('managerdashboard');
+        $tbl_menu = Menu::count();
+        $tbl_kategori = Kategori ::count();
+        return view('managerdashboard',compact('tbl_menu','tbl_kategori'));
     }
 }

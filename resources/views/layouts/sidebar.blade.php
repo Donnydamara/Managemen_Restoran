@@ -1,9 +1,9 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar bg-white elevation-3" style="text-align: left;">
     <!-- Brand Logo -->
-    <a href="{{ route('dashboard') }}" class="brand-link">
-        <img src="{{ asset('img/app-logo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
+    <a href="{{ route('dashboard') }}" class="brand-link" style="text-align: center; display: block;">
+        <img src="{{ asset('img/Logo1.png') }}" alt="AdminLTE Logo" 
+            style="opacity: .8; width: 150px;  margin: -50px ">
     </a>
 
     <!-- Sidebar -->
@@ -55,8 +55,9 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{route('manager.menu')}}" class="nav-link">
-                        <i class="nav-icon fa fa-calendar"></i>
-                        <p>Daftar Menu</p>
+                        <img src="{{ asset('img/Logo4.png') }}" alt="Daftar Menu" 
+                            style="opacity: .7; width: 26px; margin-right: 4px;">
+                            <p>Daftar Menu</p>
                     </a>
                 </li>
                 @endif
@@ -79,7 +80,7 @@
                     {{-- Admin & Manajer --}}
                     <li class="nav-item">
                         <a href="{{ route('users.index') }}" class="nav-link">
-                            <i class="nav-icon fa fa-dashboard"></i>
+                            <i class="nav-icon 	fa fa-users"></i>
                             <p>Managemen User</p>
                         </a>
                     </li>
@@ -88,7 +89,7 @@
                     {{-- Admin & Manajer --}}
                     <li class="nav-item">
                         <a href="" class="nav-link">
-                            <i class="nav-icon fa fa-dashboard"></i>
+                            <i class="nav-icon 	fa fa-users"></i>
                             <p>Managemen User</p>
                         </a>
                     </li>
