@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
-
 
 class UserController extends Controller
 {
@@ -74,7 +74,10 @@ class UserController extends Controller
     }
     public function index()
     {
-        $users = User::all();
+        
+        // Hanya tampilkan user dengan role 2 jika role user adalah 1 (Admin)
+        $users = Auth::user()->role == 1 ? User::where('role', 2)->get() : User::all();
+
         return view('users.index', compact('users'));
     }
     public function create()

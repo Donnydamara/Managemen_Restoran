@@ -40,7 +40,7 @@
                 @endif
 
                 @if (Auth::check() && Auth::user()->role == '1')
-                {{-- Admin --}}
+                {{-- Manajer --}}
                 <li class="nav-item">
                     <a href="{{ route('manager.dashboard') }}" class="nav-link">
                         <i class="nav-icon fa fa-dashboard"></i>
@@ -61,22 +61,37 @@
                 </li>
                 @endif
                 @if (Auth::check() && Auth::user()->role == '2')
-                {{-- Admin --}}
+                {{-- Kasir --}}
                 <li class="nav-item">
                     <a href="{{ route('kasir.dashboard') }}" class="nav-link">
                         <i class="nav-icon fa fa-dashboard"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                        <a href="{{ route('pesanan') }}" class="nav-link">
+                            <i class="nav-icon fa fa-dashboard"></i>
+                            <p>Pesanan</p>
+                        </a>
+                </li>
                 @endif
                 @if (Auth::check() && Auth::user()->role == '0')
-                {{-- Admin --}}
-                <li class="nav-item">
-                    <a href="{{ route('users.index') }}" class="nav-link">
-                        <i class="nav-icon fa fa-user"></i>
-                        <p>Managemen User</p>
-                    </a>
-                </li>
+                    {{-- Admin & Manajer --}}
+                    <li class="nav-item">
+                        <a href="{{ route('users.index') }}" class="nav-link">
+                            <i class="nav-icon fa fa-dashboard"></i>
+                            <p>Managemen User</p>
+                        </a>
+                    </li>
+                @endif
+                @if (Auth::check() && Auth::user()->role == '1')
+                    {{-- Admin & Manajer --}}
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            <i class="nav-icon fa fa-dashboard"></i>
+                            <p>Managemen User</p>
+                        </a>
+                    </li>
                 @endif
                 <li class="nav-item">
                     <a href="{{ route('about') }}" class="nav-link">
