@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\PesananController;
 //use App\Kategori;
 //use App\Menu;
 use Illuminate\Support\Facades\Auth;
@@ -103,9 +104,41 @@ Route::prefix('manager')->middleware(['auth', 'manager'])->group(function () {
 
     // route untuk menghapus menu
     Route::get('/menu/{menu}/delete', 'MenuController@destroy')->name('deleteMenu');
+
+    // CRUD USERCONTROLLER==============================================================
+    // Rute untuk menampilkan daftar user
+    Route::get('/users', [UserController::class, 'index'])->name('managers.index');
+
+    // Rute untuk menampilkan form tambah user
+    // Route::get('/users/create', [UserController::class, 'create'])->name('managers.create');
+
+    // Rute untuk menyimpan data user yang baru ditambahkan
+    // Route::post('/users', [UserController::class, 'store'])->name('managers.store');
+
+    // Rute untuk menampilkan detail user
+    // Route::get('/users/{user}', [UserController::class, 'show'])->name('managers.show');
+
+    // Rute untuk menampilkan form edit user
+    // Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('managers.edit');
+
+    // Rute untuk menyimpan perubahan pada user yang diedit
+    // Route::put('/users/{user}', [UserController::class, 'update'])->name('managers.update');
+
+    // Hapus resource yang ditentukan dari penyimpanan
+    // Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('managers.destroy');
+    // Route::get('/users/reset-password/{id}', 'UserController@resetPassword')->name('managers.resetPassword');
 });
 
 // ============================================== Kasir System =====================================================//
 Route::prefix('kasir')->middleware(['auth', 'kasir'])->group(function () {
     Route::get('/dashboard', 'KasirDashboardController@index')->name('kasir.dashboard');
+
+    // by syifa
+    Route::get('/order', 'PesananController@index')->name('pesanan');
+    Route::get('/order/cari/{cari}', [PesananController::class, 'cari'])->name('pesanan.cari');
+    Route::post('/order/carisubmit', [PesananController::class, 'carisubmit'])->name('pesanan.carisubmit');
+    Route::post('/order', [PesananController::class, 'add'])->name('pesanan.add');
+    Route::get('/order/hapus/{id}', [PesananController::class, 'destroy'])->name('pesanan.destroy');
+    Route::post('/order/proses', [PesananController::class, 'proses'])->name('detailpesanan.proses');
+    Route::get('/order/viewproses/{id_pesanan}', [PesananController::class, 'viewproses'])->name('detailpesanan.viewproses');
 });

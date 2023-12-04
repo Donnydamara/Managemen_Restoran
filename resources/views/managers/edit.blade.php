@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-body login-card-body">
 
-            <form action="{{ route('users.update', ['user' => $user->id]) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('managers.update', ['user' => $user->id]) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -117,7 +117,7 @@
                         <button type="submit" class="btn btn-primary btn-block">Update</button>
                     </div>
                     <div class="col-6">
-                        <a href="{{ route('users.index') }}" class="btn btn-secondary btn-block">Cancel</a>
+                        <a href="{{ route('managers.index') }}" class="btn btn-secondary btn-block">Cancel</a>
                     </div>
                 </div>
             </form>
