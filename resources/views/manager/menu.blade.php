@@ -55,14 +55,13 @@
 <div class="content">
     <div class="container-fluid">
 
-
         <div class="card">
             <div class="card-header text-left">
                 <a href="{{route('createMenu')}}" class="btn btn-success px-4" role="button"><i class="fa-solid fa-plus"></i> Tambah Menu</a>
             </div>
             <div class="card-body">
                 <table class="table table-hover mb-0" id="data-table">
-                    <thead style="text-align: center;">
+                    <thead>
                         <tr>
                             <th>No.</th>
                             <th>Foto</th>
@@ -70,7 +69,7 @@
                             <th>Kategori</th>
                             <th>Harga</th>
                             <th>Deskripsi</th>
-                            <th>Aksi</th>
+                            <th style="width: 180px; text-align: center;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,11 +86,17 @@
                             <td>
                                 {{ $m->nama_menu }}
                             </td>
-                            <td> {{ $m->kategori->kategori }}</td>
+                            <td>
+                                @if ($m->kategori)
+                                {{ $m->kategori->kategori }}
+                                @else
+                                Kategori menu belum dimasukkan
+                                @endif
+                            </td>
                             <td> {{ $m->harga }}</td>
                             <td> {{ $m->deskripsi }}</td>
-                            <td style="width: 150px;">
-                                <button type="button" class="btn btn-primary btn-sm mb-2 px-5" data-toggle="modal" data-target="#menuDetailModal{{ $m->id }}">
+                            <td style="width: 150px; text-align: center;">
+                                <button type=" button" class="btn btn-primary btn-sm mb-2 px-5" data-toggle="modal" data-target="#menuDetailModal{{ $m->id }}">
                                     <i class="fa-solid fa-circle-info"></i> Detail
                                 </button>
 
@@ -113,7 +118,13 @@
                                                     <div class="col-md-6">
                                                         <!-- Tempat untuk menampilkan detail menu -->
                                                         <p>Nama Menu: <span> {{ $m->nama_menu }}</span></p>
-                                                        <p>Kategori: <span>{{ $m->kategori->kategori }}</span></p>
+                                                        <p>Kategori: <span>
+                                                                @if ($m->kategori)
+                                                                {{ $m->kategori->kategori }}
+                                                                @else
+                                                                Kategori menu belum dimasukkan
+                                                                @endif
+                                                            </span></p>
                                                         <p>Harga: <span> {{ $m->harga }}</span></p>
                                                         <p>Deskripsi: <span> {{ $m->deskripsi }}</span></p>
                                                     </div>
@@ -136,11 +147,10 @@
                 </table>
             </div>
         </div>
-    </div>
-</div>
 
 
-</div><!-- /.container-fluid -->
+
+    </div><!-- /.container-fluid -->
 </div>
 <!-- /.content -->
 @endsection

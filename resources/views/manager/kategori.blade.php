@@ -54,7 +54,6 @@
 <div class="content">
     <div class="container-fluid">
 
-
         <div class="card">
             <div class="card-header text-left">
                 <a href="{{route('createKategori')}}" class="btn btn-success" role="button"><i class="fa-solid fa-plus"></i> Tambah Kategori Menu</a>
@@ -83,10 +82,8 @@
                 </table>
             </div>
         </div>
-    </div>
-</div>
 
-</div><!-- /.container-fluid -->
+    </div><!-- /.container-fluid -->
 </div>
 <!-- /.content -->
 @endsection

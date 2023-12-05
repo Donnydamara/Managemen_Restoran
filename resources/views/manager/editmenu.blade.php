@@ -38,7 +38,6 @@
                 <input type="file" name="image" id="image" class="form-control @error('image') is-invalid @enderror" onchange="previewImage(this)">
             </div>
 
-
             <div class="form-group">
                 <label for="nama_menu">Menu</label>
                 <input type="text" name="nama_menu" id="nama_menu" class="form-control" required="required" value="{{ $menu->nama_menu }}" placeholder="Masukkan nama jurusan">
@@ -68,10 +67,9 @@
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </form>
-    </div>
-</div>
 
-</div><!-- /.container-fluid -->
+
+    </div><!-- /.container-fluid -->
 </div>
 <!-- /.content -->
 

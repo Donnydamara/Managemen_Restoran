@@ -11,7 +11,7 @@
 			</div><!-- /.col -->
 			<div class="col-sm-6">
 				<ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
+					<li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
 					<li class="breadcrumb-item active">Pesanan</li>
 				</ol>
 			</div><!-- /.col -->
@@ -25,13 +25,13 @@
 	<div class="container-fluid">
 
 		{{-- main content here --}}
-        
+
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
 					<form action="{{ route('pesanan.carisubmit') }}" method="POST">
-					@csrf
-						<input type="text" id="cari" name="cari" placeholder="cari">
+						@csrf
+						<input type="text" id="cari" name="cari" placeholder="cari" style="width: 250px;">
 						<button class="btn btn-primary" type="submit"><i class="fa fa-search"></i>
 							Cari Menu
 						</button>
@@ -40,101 +40,99 @@
 						</a>
 					</form>
 					<div style="max-height: 500px; overflow-y: scroll;">
-					@foreach ($menu as $m)
-						<div class="card mb-3">
+						@foreach ($menu as $m)
+						<div class="card mb-3 mt-3">
 							<div class="row g-0">
-							<div class="col-md-4 mt-3">
-								<img src="{{ asset('/img/menu/' . $m->image) }}" class="img-fluid rounded-start" alt="Menu Photo" style="max-width: 200px;">
-							</div>
-							<div class="col-md-8">
-								<div class="card-body">
-									<form action="{{ route('pesanan.add') }}" method="POST">
-									@csrf
-									<h5 class="card-title">{{ $m->nama_menu }}</h5>
-									<p class="card-text">{{ $m->kategori->kategori }}</p>
-									<p class="card-text">{{ $m->deskripsi }}</p>
-									<p class="card-text text-right">{{ $m->harga }}</p>
-									<label for="qty">Qty</label>
-									<input type="number" min="1" id="qty" name="qty" style="width:40px;" value="1" required>
-									<input type="hidden" id="id_menu" name="id_menu" value="{{ $m->id }}">
-									<input type="hidden" id="nama_menu" name="nama_menu" value="{{ $m->nama_menu }}">
-									<input type="hidden" id="harga" name="harga" value="{{ $m->harga }}">
-									<button class="btn btn-primary" type="submit"><i class="fa fa-plus"></i>
-									Tambah Menu
-									</button>
-									</form>
+								<div class="col-md-4 m-3">
+									<img src="{{ asset('/img/menu/' . $m->image) }}" class="img-fluid rounded-start" alt="Menu Photo" style="max-width: 200px;">
+								</div>
+								<div class="col-md-6">
+									<div class="card-body">
+										<form action="{{ route('pesanan.add') }}" method="POST">
+											@csrf
+											<h5 class="card-title"><b>{{ $m->nama_menu }}</b></h5>
+											<p class="card-text">Kategori : <span>{{ $m->kategori->kategori }}</span></p>
+											<p class="card-text">Deskripsi : <span style="text-align: justify;">{{ $m->deskripsi }}</span></p>
+											<p class="card-text">Harga : <span>{{ $m->harga }}</span></p>
+											<label for="qty">Qty</label>
+											<input type="number" min="1" id="qty" name="qty" style="width:40px;" value="1" required>
+											<input type="hidden" id="id_menu" name="id_menu" value="{{ $m->id }}">
+											<input type="hidden" id="nama_menu" name="nama_menu" value="{{ $m->nama_menu }}">
+											<input type="hidden" id="harga" name="harga" value="{{ $m->harga }}">
+											<button class="btn btn-primary" type="submit"><i class="fa fa-plus"></i>
+												Tambah Menu
+											</button>
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					@endforeach
+						@endforeach
 					</div>
 				</div>
 
 				<div class="col-md-6">
 					<div class="card-header">
-					<div class="card mb-3" style="max-width: 540px;">
-						<div class="row g-0">
-							<div class="col-md-12">
-								<div class="card-body">
-								<h3>Pesanan {{ $no_pesanan }}</h3>
-								<table class="table table-hover table-bordered text-center" style="border: 1px solid #ccc;" id="data-table">
-								<thead>
-									<tr style="background-color: #2c3e50; color: white;">
-										<th>No.</th>
-										<th>Menu</th>
-										<th>Harga</th>
-										<th>Jumlah</th>
-										<th>Subtotal</th>
-										<th>Aksi</th>
-									</tr>
-								</thead>
-								<tbody>
-									@foreach ($detail_pesanan as $detail_pesanans) 
-									<tr>
-										<td> {{ $loop->index + 1 }} </td>
-										<td> {{ $detail_pesanans->nama_menu }} </td>
-										<td> {{ $detail_pesanans->harga }}  </td>
-										<td> {{ $detail_pesanans->jumlah }}  </td>
-										<td> {{ $detail_pesanans->subtotal }}  </td>
-										<td>
-											<a href="{{ route('pesanan.destroy', ['id' => $detail_pesanans->id_detail_pesanan]) }}" 
-											class="btn btn-danger btn-md text-white" role="button"><i class="fa fa-trash-o"></i> Hapus</a>
-										</td>
-									</tr>
-									@endforeach 
-								</tbody>
-							</table>
-								@if ($no_pesanan)
-								<form action="{{ route('detailpesanan.proses') }}" method="POST">
-								@csrf
-								<input type="hidden" name="id_pesanan" value="{{ $id_pesanan }}">
-								<label for="jenis_pesanan">Jenis Pesanan</label></br>
-								<select name="jenis_pesanan" required>
-									<option value="" selected>-Pilih-</option>
-									<option value="Bawa Pulang">Bawa Pulang</option>
-									<option value="Makan di Tempat">Makan di Tempat</option>
-								</select></br></br>
-								<label for="jenis_pembayaran">Jenis Pembayaran</label></br>
-								<select name="jenis_pembayaran" required>
-									<option value="" selected>-Pilih-</option>
-									<option value="Tunai">Tunai</option>
-									<option value="Edc">Edc</option>
-									<option value="Qris">Qris</option>
-								</select></br></br>
-								<button class="btn btn-primary" type="submit"><i class="fa fa-check"></i>Proses Pesanan</a>
-								<button class="btn btn-danger" type="submit"><i class="fa fa-close"></i>Batal</button>
-								</form>
-								@endif
+						<div class="card mb-3" style="max-width: 540px;">
+							<div class="row g-0">
+								<div class="col-md-12">
+									<div class="card-body">
+										<h3>Pesanan {{ $no_pesanan }}</h3>
+										<table class="table table-hover table-bordered text-center" style="border: 1px solid #ccc;" id="data-table">
+											<thead>
+												<tr style="background-color: #2c3e50; color: white;">
+													<th>No.</th>
+													<th>Menu</th>
+													<th>Harga</th>
+													<th>Jumlah</th>
+													<th>Subtotal</th>
+													<th>Aksi</th>
+												</tr>
+											</thead>
+											<tbody>
+												@foreach ($detail_pesanan as $detail_pesanans)
+												<tr>
+													<td> {{ $loop->index + 1 }} </td>
+													<td> {{ $detail_pesanans->nama_menu }} </td>
+													<td> {{ $detail_pesanans->harga }} </td>
+													<td> {{ $detail_pesanans->jumlah }} </td>
+													<td> {{ $detail_pesanans->subtotal }} </td>
+													<td>
+														<a href="{{ route('pesanan.destroy', ['id' => $detail_pesanans->id_detail_pesanan]) }}" class="btn btn-danger btn-md text-white" role="button"><i class="fas fa-trash-can"></i> Hapus</a>
+													</td>
+												</tr>
+												@endforeach
+											</tbody>
+										</table>
+										@if ($no_pesanan)
+										<form action="{{ route('detailpesanan.proses') }}" method="POST">
+											@csrf
+											<input type="hidden" name="id_pesanan" value="{{ $id_pesanan }}">
+											<label for="jenis_pesanan">Jenis Pesanan</label></br>
+											<select name="jenis_pesanan" required>
+												<option value="" selected>-Pilih-</option>
+												<option value="Bawa Pulang">Bawa Pulang</option>
+												<option value="Makan di Tempat">Makan di Tempat</option>
+											</select></br></br>
+											<label for="jenis_pembayaran">Jenis Pembayaran</label></br>
+											<select name="jenis_pembayaran" required>
+												<option value="" selected>-Pilih-</option>
+												<option value="Tunai">Tunai</option>
+												<option value="Edc">Edc</option>
+												<option value="Qris">Qris</option>
+											</select></br></br>
+											<button class="btn btn-primary" type="submit"><i class="fa fa-check"></i> Proses Pesanan</button>
+											<button class="btn btn-danger" type="submit"><i class="fa fa-close"></i> Batal</button>
+										</form>
+										@endif
+									</div>
 								</div>
-							</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
 
 	</div><!-- /.container-fluid -->
 </div>
