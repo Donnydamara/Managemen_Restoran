@@ -48,7 +48,7 @@ class MenuController extends Controller
             'nama_menu' => 'required|max:225|string',
             'deskripsi' => 'required|string',
             'harga' => 'required|integer',
-            'image' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'image' => ['file'],
         ]);
 
         if ($request->hasFile('image')) {
@@ -117,7 +117,7 @@ class MenuController extends Controller
             'nama_menu' => 'required|max:225|string',
             'deskripsi' => 'required|string',
             'harga' => 'required|integer',
-            'image' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'image' => ['file'],
         ]);
 
         $menu = Menu::findOrFail($id);

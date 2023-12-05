@@ -88,7 +88,7 @@
                 @if (Auth::check() && Auth::user()->role == '1')
                     {{-- Admin & Manajer --}}
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{ route('userkasir.index') }}" class="nav-link">
                             <i class="nav-icon 	fa fa-users"></i>
                             <p>Managemen User</p>
                         </a>

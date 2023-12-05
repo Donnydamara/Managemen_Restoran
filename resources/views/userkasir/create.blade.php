@@ -5,7 +5,7 @@
         <div class="card-body login-card-body">
             <h2 class="login-box-msg">Tambah User Baru</h2>
 
-            <form action="{{ route('managers.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('userkasir.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
 

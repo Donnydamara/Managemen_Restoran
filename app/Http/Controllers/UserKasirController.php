@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
 
-class UserController extends Controller
+class UserKasirController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -78,11 +78,11 @@ class UserController extends Controller
         // Hanya tampilkan user dengan role 2 jika role user adalah 1 (Admin)
         $users = Auth::user()->role == 1 ? User::where('role', 2)->get() : User::all();
 
-        return view('users.index', compact('users'));
+        return view('userkasir.index', compact('users'));
     }
     public function create()
     {
-        return view('users.create');
+        return view('userkasir.create');
     }
 
     /**
@@ -115,7 +115,7 @@ class UserController extends Controller
 
         User::create($request->all());
 
-        return redirect()->route('users.index')
+        return redirect()->route('userkasir.index')
             ->with('success', 'User created successfully');
     }
     /**
@@ -127,7 +127,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('users.show', compact('user'));
+        return view('userkasir.show', compact('user'));
     }
 
     /**
@@ -139,7 +139,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('users.edit', compact('user'));
+        return view('userkasir.edit', compact('user'));
     }
 
     /**
@@ -186,7 +186,7 @@ class UserController extends Controller
 
         $user->update($request->all());
 
-        return redirect()->route('users.index')
+        return redirect()->route('userkasir.index')
             ->with('success', 'User updated successfully');
     }
     public function resetPassword($id)
@@ -194,7 +194,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         if (!$user) {
-            return redirect()->route('users.index')
+            return redirect()->route('userkasir.index')
                 ->with('error', 'User not found');
         }
 
@@ -205,7 +205,7 @@ class UserController extends Controller
         // Update password user
         $user->update(['password' => $hashedPassword]);
 
-        return redirect()->route('users.index')
+        return redirect()->route('userkasir.index')
             ->with('success', 'Password reset successfully. New password is: ' . $defaultPassword);
     }
 
@@ -233,11 +233,11 @@ class UserController extends Controller
             // Hapus user dari database
             $user->delete();
 
-            return redirect()->route('users.index')
+            return redirect()->route('userkasir.index')
                 ->with('success', 'User deleted successfully');
         }
 
-        return redirect()->route('users.index')
+        return redirect()->route('userkasir.index')
             ->with('error', 'User not found');
     }
 }
