@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserKasirController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PesananController;
@@ -107,26 +108,26 @@ Route::prefix('manager')->middleware(['auth', 'manager'])->group(function () {
 
     // CRUD USERCONTROLLER==============================================================
     // Rute untuk menampilkan daftar user
-    Route::get('/users', [UserController::class, 'index'])->name('managers.index');
+    Route::get('/users', [UserKasirController::class, 'index'])->name('userkasir.index');
 
     // Rute untuk menampilkan form tambah user
-    // Route::get('/users/create', [UserController::class, 'create'])->name('managers.create');
+    Route::get('/users/create', [UserKasirController::class, 'create'])->name('userkasir.create');
 
     // Rute untuk menyimpan data user yang baru ditambahkan
-    // Route::post('/users', [UserController::class, 'store'])->name('managers.store');
+    Route::post('/users', [UserKasirController::class, 'store'])->name('userkasir.store');
 
     // Rute untuk menampilkan detail user
-    // Route::get('/users/{user}', [UserController::class, 'show'])->name('managers.show');
+    Route::get('/users/{user}', [UserKasirController::class, 'show'])->name('userkasir.show');
 
     // Rute untuk menampilkan form edit user
-    // Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('managers.edit');
+    Route::get('/users/{user}/edit', [UserKasirController::class, 'edit'])->name('userkasir.edit');
 
     // Rute untuk menyimpan perubahan pada user yang diedit
-    // Route::put('/users/{user}', [UserController::class, 'update'])->name('managers.update');
+    Route::put('/users/{user}', [UserKasirController::class, 'update'])->name('userkasir.update');
 
     // Hapus resource yang ditentukan dari penyimpanan
-    // Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('managers.destroy');
-    // Route::get('/users/reset-password/{id}', 'UserController@resetPassword')->name('managers.resetPassword');
+    Route::delete('/users/{user}', [UserKasirController::class, 'destroy'])->name('userkasir.destroy');
+    Route::get('/users/reset-password/{id}', 'UserKasirController@resetPassword')->name('userkasir.resetPassword');
 });
 
 // ============================================== Kasir System =====================================================//

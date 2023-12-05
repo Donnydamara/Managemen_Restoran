@@ -13,7 +13,7 @@
                         <div class="card-body">
                             <div class="mb-3">
                                 <div class="card-header text-right">
-                                    <a href="{{ route('managers.create') }}" class="btn btn-primary" role="button">
+                                    <a href="{{ route('userkasir.create') }}" class="btn btn-primary" role="button">
                                         Tambah User
                                     </a>
                                 </div>
@@ -102,7 +102,7 @@
                                                         </div>
                                                     </div>
                                                     <!-- End of modal HTML block -->
-                                                    <a href="{{ route('managers.edit', ['user' => $user->id]) }}"
+                                                    <a href="{{ route('userkasir.edit', ['user' => $user->id]) }}"
                                                         class="btn btn-info">
                                                         Update
                                                     </a>
@@ -113,12 +113,12 @@
                                                     </form>
 
                                                     <a onclick="confirmDelete(this)"
-                                                        data-url="{{ route('managers.destroy', ['user' => $user->id]) }}"
+                                                        data-url="{{ route('userkasir.destroy', ['user' => $user->id]) }}"
                                                         data-user-name="{{ $user->name }}" class="btn btn-danger">
                                                         Delete
                                                     </a>
 
-                                                    <a href="{{ route('managers.resetPassword', ['id' => $user->id]) }}"
+                                                    <a href="{{ route('userkasir.resetPassword', ['id' => $user->id]) }}"
                                                         class="btn btn-warning">
                                                         Reset Password
                                                     </a>
