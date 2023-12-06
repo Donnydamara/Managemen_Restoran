@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserController::class, 'showProfile'])->name('profile.show');
     Route::get('/profile/edit', [UserController::class, 'editProfile'])->name('profile.edit');
     Route::put('/profile/update', [UserController::class, 'updateProfile'])->name('profile.update');
+    Route::post('/profile/validate-password', [UserController::class, 'validatePassword'])
+        ->name('profile.validate-password');
 });
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
