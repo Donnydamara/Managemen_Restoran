@@ -70,10 +70,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                        <a href="{{ route('pesanan') }}" class="nav-link">
-                            <i class="nav-icon fa fa-dashboard"></i>
-                            <p>Pesanan</p>
-                        </a>
+                    <a href="{{ route('pesanan') }}" class="nav-link">
+                        <i class='nav-icon fas fa-receipt'></i>
+                        <p>Pesanan</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('transaksi.riwayattransaksi') }}" class="nav-link">
+                        <i class="nav-icon fa fa-history"></i>
+                        <p>Riwayat Transaksi</p>
+                    </a>
                 </li>
                 @endif
                 @if (Auth::check() && Auth::user()->role == '0')
@@ -96,10 +102,10 @@
                 @endif
                 <li class="nav-item">
                     <a href="{{ route('about') }}" class="nav-link">
-                        <i class="nav-icon fa fa-about"></i>
+                        <i class="nav-icon fa fa-info-circle"></i>
                         <p>About</p>
                     </a>
-                </li>
+                </li> 
                 <li class="nav-item">
                     <form id="logout-form" action="{{ route('logout') }}" method="post">
                         @csrf
