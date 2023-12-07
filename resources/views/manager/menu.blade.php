@@ -68,7 +68,7 @@
                             <th>Menu</th>
                             <th>Kategori</th>
                             <th>Harga</th>
-                            <th>Deskripsi</th>
+
                             <th style="width: 180px; text-align: center;">Aksi</th>
                         </tr>
                     </thead>
@@ -94,8 +94,8 @@
                                 @endif
                             </td>
                             <td> Rp. {{ number_format ($m->harga) }}</td>
-                            <td> {{ $m->deskripsi }}</td>
-                            <td style="width: 150px; text-align: center;">
+
+                            <td style="width: 150px;" class="text-center">
                                 <button type=" button" class="btn btn-primary btn-sm mb-2 px-5" data-toggle="modal" data-target="#menuDetailModal{{ $m->id }}">
                                     <i class="fa-solid fa-circle-info"></i> Detail
                                 </button>
@@ -115,7 +115,7 @@
                                                     <div class="col-md-6">
                                                         <img src="{{ asset('img/menu/' . $m->image) }}" alt="Gambar Menu" class="img-fluid">
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-6" style="text-align: justify;">
                                                         <!-- Tempat untuk menampilkan detail menu -->
                                                         <p>Nama Menu: <span> {{ $m->nama_menu }}</span></p>
                                                         <p>Kategori: <span>
