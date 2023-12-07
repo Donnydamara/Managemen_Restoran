@@ -53,13 +53,12 @@ class RiwayatTransaksiController extends Controller
             )
             ->where('tbl_pesanan.status', 1)
             ->where('tbl_pesanan.created_at', 'like', "%{$request['filter']}%")
-            ->groupBy('tbl_pesanan.no_pesanan', 'tbl_pesanan.jenis_pesanan', 'tbl_pesanan.jenis_pembayaran', 'users.name' ,'tbl_pesanan.created_at')
+            ->groupBy('tbl_pesanan.no_pesanan', 'tbl_pesanan.jenis_pesanan', 'tbl_pesanan.jenis_pembayaran', 'users.name', 'tbl_pesanan.created_at')
             ->get();
 
         return view('transaksi.riwayattransaksi', [
             'pesanan' => $pesanan,
         ]);
-        
     }
 
     public function filtersubmit(Request $request)

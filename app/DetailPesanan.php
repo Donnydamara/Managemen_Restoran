@@ -16,5 +16,15 @@ class DetailPesanan extends Model
         'harga',
         'subtotal',
     ];
+
+    public function menu()
+    {
+        return $this->belongsTo(Menu::class, 'id_menu', 'id');
+    }
+
+    public function kategori()
+    {
+        return $this->belongsTo(Kategori::class, 'id_kategori', 'id');
+    }
 }
 // by syifa

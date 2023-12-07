@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserKasirController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\OmsetRestoranController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\RiwayatTransaksiController;
 use Illuminate\Support\Facades\Auth;
@@ -129,6 +130,11 @@ Route::prefix('manager')->middleware(['auth', 'manager'])->group(function () {
     // Hapus resource yang ditentukan dari penyimpanan
     Route::get('/users/{user}', [UserKasirController::class, 'destroy'])->name('userkasir.destroy');
     Route::get('/users/reset-password/{id}', 'UserKasirController@resetPassword')->name('userkasir.resetPassword');
+
+    // Show omset restoran
+    Route::get('/omsetrestoran', 'OmsetRestoranController@index')->name('manager.omsetrestoran');
+    Route::get('/omsetrestoran/filter', [OmsetRestoranController::class, 'filter'])->name('omset.filter');
+    Route::post('/omsetrestoran/filtersubmit', [OmsetRestoranController::class, 'filtersubmit'])->name('omset.filtersubmit');
 });
 
 // ============================================== Kasir System =====================================================//
