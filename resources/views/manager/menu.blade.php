@@ -93,7 +93,7 @@
                                 Kategori menu belum dimasukkan
                                 @endif
                             </td>
-                            <td> {{ $m->harga }}</td>
+                            <td> Rp. {{ number_format ($m->harga) }}</td>
                             <td> {{ $m->deskripsi }}</td>
                             <td style="width: 150px; text-align: center;">
                                 <button type=" button" class="btn btn-primary btn-sm mb-2 px-5" data-toggle="modal" data-target="#menuDetailModal{{ $m->id }}">

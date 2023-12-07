@@ -31,7 +31,7 @@
 				<div class="col-md-6">
 					<form action="{{ route('pesanan.carisubmit') }}" method="POST">
 						@csrf
-						<input type="text" id="cari" name="cari" placeholder="cari" style="width: 250px;">
+						<input type="text" id="cari" name="cari" placeholder="cari">
 						<button class="btn btn-primary" type="submit"><i class="fa fa-search"></i>
 							Cari Menu
 						</button>
@@ -43,7 +43,7 @@
 						@foreach ($menu as $m)
 						<div class="card mb-3 mt-3">
 							<div class="row g-0">
-								<div class="col-md-4 m-3">
+								<div class="col-md-5 m-3">
 									<img src="{{ asset('/img/menu/' . $m->image) }}" class="img-fluid rounded-start" alt="Menu Photo" style="max-width: 200px;">
 								</div>
 								<div class="col-md-6">
@@ -53,7 +53,7 @@
 											<h5 class="card-title"><b>{{ $m->nama_menu }}</b></h5>
 											<p class="card-text">Kategori : <span>{{ $m->kategori->kategori }}</span></p>
 											<p class="card-text">Deskripsi : <span style="text-align: justify;">{{ $m->deskripsi }}</span></p>
-											<p class="card-text">Harga : Rp. <span>{{ $m->harga }}</span></p>
+											<p class="card-text">Harga : Rp. <span>{{ number_format ($m->harga) }}</span></p>
 											<label for="qty">Qty</label>
 											<input type="number" min="1" id="qty" name="qty" style="width:40px;" value="1" required>
 											<input type="hidden" id="id_menu" name="id_menu" value="{{ $m->id }}">
