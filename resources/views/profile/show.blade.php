@@ -9,29 +9,25 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Your Profile</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item active">Dashboard</li>
-                        </ol>
-                    </div><!-- /.col -->
+
+                    <h1 class="m-0 text-dark" style="text-align: center">Profile</h1>
+
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
         <!-- /.content-header -->
 
         <!-- Main content -->
-        <div class="container">
-            <div class="row inf-content">
+        <div class="container mt-4">
+            <div class="row">
                 <div class="col-md-4 ">
-                    <img src="{{ asset('image/profil/' . $user->photo_path) }}" style="width: 100%;" title="Profile Picture"
-                        class="img-circle img-thumbnail isTooltip bold-image"
-                        src="https://bootdey.com/img/Content/avatar/avatar7.png" data-original-title="User">
+                    <div>
+                        <img src="{{ asset('image/profil/' . $user->photo_path) }}" alt="Profile Picture"
+                            class="img-fluid rounded-circle img-thumbnail foto-profile">
+                    </div>
                 </div>
-                <div class="col-md-8">
-                    <div class="card">
+                <div class="col-md-8 ">
+                    <div class="card inf-content">
                         <div class="card-body">
                             <h5 class="card-title">Information</h5>
                             <table class="table table-user-information">
@@ -117,17 +113,35 @@
         </div>
     </div>
     <style>
+        .foto-profile {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+
+        }
+
         .bold-image {
             border: 4px solid #000;
-            /* Ubah warna dan lebar sesuai keinginan Anda */
         }
 
         .inf-content {
+            margin-top: 5%;
             border: 1px solid #DDDDDD;
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
             border-radius: 10px;
             box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Additional styling for a more modern look */
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-user-information td {
+            border: none;
         }
     </style>
     <!-- /.content-wrapper -->

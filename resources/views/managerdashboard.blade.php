@@ -1,6 +1,8 @@
 @extends('layouts.master')
 
 @section('content')
+    @if (Session::has('success'))
+    @endif
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -44,7 +46,7 @@
                         </span>
 
                         <div class="info-box-content">
-                            <span class="info-box-number" style="font-size: 25px;">{{ $tbl_kategori}}</span>
+                            <span class="info-box-number" style="font-size: 25px;">{{ $tbl_kategori }}</span>
                             <span class="info-box-text">Kategori</span>
                         </div>
                         <!-- /.info-box-content -->

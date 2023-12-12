@@ -15,7 +15,6 @@ class AdminSeeder extends Seeder
             'no_hp' => '081234567890',
             'tanggal_lahir' => '1990-01-01',
             'tempat_lahir' => 'Jakarta',
-            'photo_path' => 'default.jpg',
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'), // Gantilah 'password' dengan kata sandi yang diinginkan
             'role' => 0, // Sesuaikan dengan nilai default di migrasi ('role' => true) atau ('role' => '0')

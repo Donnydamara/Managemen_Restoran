@@ -1,6 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
+    @if (Session::has('success'))
+    @endif
+
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -67,13 +70,13 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Jurusan Table</h3>
+                            <h3 class="card-title">User Managemen</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table class="table table-bordered" id="tbl-jurusan">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-center">
                                         <th>Foto</th>
                                         <th>ID</th>
                                         <th>Nama</th>
@@ -83,7 +86,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($UserData as $User)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td>
                                                 @if ($User->photo_path)
                                                     <img src="{{ asset('image/profil/' . $User->photo_path) }}"
@@ -120,20 +123,20 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Mata Pelajaran Table</h3>
+                            <h3 class="card-title">Kategori Menu</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table class="table table-bordered" id="tbl-mata-pelajaran">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-center">
                                         <th>ID</th>
                                         <th>Kategori Menu</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($KategoriData as $Kategori)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td>{{ $Kategori->id }}</td>
                                             <td>{{ $Kategori->kategori }}</td>
                                         </tr>
@@ -152,13 +155,13 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Pelajar Table</h3>
+                            <h3 class="card-title">Daftar Menu</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table class="table table-bordered" id="tbl-pelajar">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-center">
 
                                         <th>Foto</th>
                                         <th>id_kategori</th>
@@ -168,12 +171,12 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($MenuData as $Menu)
-                                        <tr>
+                                        <tr class="text-center">
                                             <td>
                                                 @if ($Menu->image)
-                                                    <img src="{{ asset('/img/menu/' . $Menu->image) }}"
-                                                        class="img-fluid rounded-start" alt="Menu Photo"
-                                                        style="max-width: 200px;">
+                                                    <img src="{{ asset('/img/menu/' . $Menu->image) }}" class="img-fluid "
+                                                        alt="Menu Photo"
+                                                        style="width: 70px; height: 70px; object-fit: cover;">
                                                 @else
                                                     No photo available
                                                 @endif
@@ -196,11 +199,8 @@
         </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
-@endsection
-
-@section('scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('#tbl-jurusan, #tbl-mata-pelajaran, #tbl-pelajar').DataTable({
@@ -212,4 +212,12 @@
             });
         });
     </script>
+    <style>
+        .img-dashboard {
+            text-align: center;
+        }
+    </style>
+@endsection
+@section('scripts')
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 @endsection

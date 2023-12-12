@@ -20,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-    <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+    {{-- <link rel="icon" type="image/png" href="images/icons/favicon.ico" /> --}}
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
