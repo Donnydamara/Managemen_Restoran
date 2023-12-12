@@ -4,13 +4,15 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-                <div class="login100-pic js-tilt" data-tilt>
-                    <img src="image/logo.jpg" alt="IMG">
-                </div>
+
 
                 <form class="login100-form validate-form" action="{{ route('login') }}" method="post">
                     @csrf
                     <span class="login100-form-title">
+                        <div>
+                            <img class="imagelogo" src="image/logo.jpg" alt="IMG">
+                        </div>
+
                         Member Login
                     </span>
 
@@ -46,13 +48,6 @@
                         <button class="login100-form-btn" type="submit">
                             Login
                         </button>
-                    </div>
-
-
-
-                    <div class="text-center p-t-136">
-                        <a href="{{ route('register') }}"
-                            class="text-center">{{ __('Belum punya akun? Daftar sekarang') }}</a>
                     </div>
                 </form>
             </div>

@@ -1,7 +1,8 @@
-
 @extends('layouts.master')
 
 @section('content')
+    @if (Session::has('success'))
+    @endif
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -18,7 +19,7 @@
         </div>
     </div>
     <!-- /.content-header -->
-    
+
     <section class="content">
         <div class="row justify-content-center">
             <div class="col-lg-3 col-12">
@@ -30,10 +31,11 @@
                     <div class="icon">
                         <i class="fa fa-book"></i>
                     </div>
-                    <a href="?hal=transaksi_data" class="small-box-footer">Detail <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="?hal=transaksi_data" class="small-box-footer">Detail <i
+                            class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-    
+
             <div class="col-lg-3 col-12">
                 <div class="small-box bg-warning">
                     <div class="inner">
@@ -43,7 +45,8 @@
                     <div class="icon">
                         <i class="fa fa-book"></i>
                     </div>
-                    <a href="?hal=transaksi_data" class="small-box-footer">Detail <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="?hal=transaksi_data" class="small-box-footer">Detail <i
+                            class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
         </div>
@@ -68,31 +71,32 @@
                                     <!-- Add options if needed -->
                                 </select>
                             </div>
-                                <div class="col-2">
-                                    <button type="submit" name="proses" class="btn btn-primary btn-block">Cari</button>                                
-                                </div>
+                            <div class="col-2">
+                                <button type="submit" name="proses" class="btn btn-primary btn-block">Cari</button>
                             </div>
-                        </form>
-
-                        <hr>
-
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Nama Menu</th>
-                                    <th>Deskripsi</th>
-                                    <th>Harga<th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <!-- Add table body if needed -->
-                        </table>
                     </div>
-                    <!-- /.card-body -->
+                    </form>
+
+                    <hr>
+
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Nama Menu</th>
+                                <th>Deskripsi</th>
+                                <th>Harga
+                                <th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <!-- Add table body if needed -->
+                    </table>
                 </div>
-                <!-- /.card -->
+                <!-- /.card-body -->
             </div>
-            <!-- /.col -->
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
         </div>
         <!-- /.row -->
     </section>
