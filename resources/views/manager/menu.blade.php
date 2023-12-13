@@ -66,11 +66,10 @@
                                     <td> Rp. {{ number_format($m->harga) }}</td>
 
                                     <td style="width: 150px;" class="text-center">
-                                        <button type=" button" class="btn btn-primary btn-sm mb-2 px-5" data-toggle="modal"
-                                            data-target="#menuDetailModal{{ $m->id }}">
-                                            <i class="fa-solid fa-circle-info"></i> Detail
+                                        <button type="button" class="btn btn-primary btn-sm mb-2 px-5"
+                                            data-bs-toggle="modal" data-bs-target="#menuDetailModal{{ $m->id }}">
+                                            <i class="fa-solid fa-circle-info"></i>Detail
                                         </button>
-
                                         <!-- Modal -->
                                         <div class="modal fade" id="menuDetailModal{{ $m->id }}" tabindex="-1"
                                             aria-labelledby="menuDetailModalLabel{{ $m->id }}" aria-hidden="true">
@@ -79,10 +78,8 @@
                                                     <div class="modal-header">
                                                         <h5 class="modal-title"
                                                             id="menuDetailModalLabel{{ $m->id }}">Detail Menu</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="row">
@@ -107,7 +104,7 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">Tutup</button>
+                                                            data-bs-dismiss="modal">Close</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -134,12 +131,20 @@
         </div><!-- /.container-fluid -->
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript">
+@section('addJavascript')
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+    <script>
         $(document).ready(function() {
-            $('#data-table').DataTable();
+            $("#data-table").DataTable({
+                responsive: true, // Enable responsive mode
+                scrollY: '50vh', // Set the vertical scrolling height as a percentage of the viewport height
+                scrollCollapse: true, // Allow the table to be collapsed when the vertical space is insufficient
+            });
         });
+    </script>
 
+    <script>
         confirmDelete = function(button) {
             var url = $(button).data('url');
             swal({
@@ -154,8 +159,6 @@
             })
         }
     </script>
-    <!-- /.content -->
 @endsection
-@section('scripts')
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+<!-- /.content -->
 @endsection

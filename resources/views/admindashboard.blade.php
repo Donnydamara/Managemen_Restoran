@@ -27,7 +27,7 @@
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col-3">
+                <div class="col-md-3 col-sm-6">
                     <div class="info-box">
                         <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
                         <div class="info-box-content">
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-md-3 col-sm-6">
                     <div class="info-box">
                         <span class="info-box-icon bg-success elevation-1"><i class="fas fa-book"></i></span>
                         <div class="info-box-content">
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-md-3 col-sm-6">
                     <div class="info-box">
                         <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-burger"></i></span>
                         <div class="info-box-content">
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-md-3 col-sm-6">
                     <div class="info-box">
                         <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-book"></i></span>
                         <div class="info-box-content">
@@ -74,7 +74,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table class="table table-bordered" id="tbl-jurusan">
+                            <table class="table table-bordered" id="tbl-user">
                                 <thead>
                                     <tr class="text-center">
                                         <th>Foto</th>
@@ -127,7 +127,7 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table class="table table-bordered" id="tbl-mata-pelajaran">
+                            <table class="table table-bordered" id="tbl-kategori">
                                 <thead>
                                     <tr class="text-center">
                                         <th>ID</th>
@@ -159,14 +159,13 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table class="table table-bordered" id="tbl-pelajar">
+                            <table class="table table-bordered" id="tbl-menu">
                                 <thead>
                                     <tr class="text-center">
-
-                                        <th>Foto</th>
-                                        <th>id_kategori</th>
-                                        <th>Menu</th>
-                                        <th>harga</th>
+                                        <td>Foto</td>
+                                        <td>id_kategori</td>
+                                        <td>Menu</td>
+                                        <td>harga</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -203,12 +202,10 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#tbl-jurusan, #tbl-mata-pelajaran, #tbl-pelajar').DataTable({
-                "scrollY": "400px",
-                "scrollCollapse": true,
-                "search": {
-                    "smart": false
-                }
+            $('#tbl-user, #tbl-kategori, #tbl-menu').DataTable({
+                responsive: true,
+                scrollY: '50vh',
+                scrollCollapse: true,
             });
         });
     </script>
