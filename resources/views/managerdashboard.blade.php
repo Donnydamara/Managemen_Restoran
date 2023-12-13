@@ -133,40 +133,56 @@
 
                     <!-- Chart2b -->
                     <div class="col-md-3">
-                        <div id="chart2b" style="width:100%; max-width:300px; height:230px;"></div>
-                        <script>
-                            google.charts.load('current', {
-                                'packages': ['corechart']
-                            });
-                            google.charts.setOnLoadCallback(drawChart2b);
-
-                            function drawChart2b() {
-                                // Set Data
-                                const data = google.visualization.arrayToDataTable([
-                                    ['Country', 'Mhl'],
-                                    ['Di Tempat', 54.8],
-                                    ['Di Bungkus', 48.6],
-                                ]);
-
-                                // Set Options
-                                const options = {
-                                    title: 'Tipe Pesanan',
-                                    is3D: true,
-                                    slices: {
-                                        0: {
-                                            color: 'green'
-                                        }, // Di Tempat
-                                        1: {
-                                            color: 'brown'
-                                        } // Di Bungkus
-                                    }
-                                };
-
-                                // Draw
-                                const chart = new google.visualization.PieChart(document.getElementById('chart2b'));
-                                chart.draw(data, options);
-                            }
-                        </script>
+                        <div class="col-md-3">
+                            <canvas id="badCanvas1" width="400" height="300"></canvas>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    // Mengambil data dari server menggunakan AJAX
+                                    fetch('/chart-data')
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            // Set Data
+                                            const labels = data.map(row => row[0]);
+                                            const values = data.map(row => row[1]);
+                        
+                                            // Set Options
+                                            const options = {
+                                                title: {
+                                                    display: true,
+                                                    text: 'Tipe Pesanan'
+                                                }
+                                                // Tambahkan opsi lain sesuai kebutuhan
+                                            };
+                        
+                                            // Draw
+                                            const ctx = document.getElementById('badCanvas1').getContext('2d');
+                                            const chart = new Chart(ctx, {
+                                                type: 'pie',
+                                                data: {
+                                                    labels: labels,
+                                                    datasets: [{
+                                                        data: values,
+                                                        backgroundColor: ['green', 'brown']
+                                                        // Tambahkan opsi dataset lain sesuai kebutuhan
+                                                    }]
+                                                },
+                                                options: {
+                                                    title: {
+                                                        display: true,
+                                                        text: 'Tipe Pesanan'
+                                                    },
+                                                    responsive: true, // Izinkan responsifitas
+                                                    maintainAspectRatio: false, // Tidak perlu mempertahankan rasio aspek
+                                                }
+                                            });
+                                        })
+                                        .catch(error => {
+                                            console.error('Error fetching data:', error);
+                                        });
+                                });
+                            </script>
+                        </div>
+                        
                     </div>
 
                     <!-- Chart1 -->

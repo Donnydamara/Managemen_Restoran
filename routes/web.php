@@ -5,6 +5,8 @@ use App\Http\Controllers\UserKasirController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PesananController;
+use App\Http\Controllers\ChartController;
+
 //use App\Kategori;
 //use App\Menu;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 Route::get('/', function () {
     return redirect(route('login'));
@@ -67,6 +70,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 // ============================================== Manager System =====================================================//
 Route::prefix('manager')->middleware(['auth', 'manager'])->group(function () {
     Route::get('/dashboard', 'ManagerDashboardController@index')->name('manager.dashboard');
+    Route::get('/chart-data', 'ManagerDasboardController@showChart');
+
 
     // Show Kategori Menu
     Route::get('/kategori', 'KategoriController@index')->name('manager.kategori');
