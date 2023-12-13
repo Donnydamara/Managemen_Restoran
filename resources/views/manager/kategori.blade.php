@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+
+
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -60,10 +62,16 @@
 
         </div><!-- /.container-fluid -->
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript">
+@section('addJavascript')
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+    <script>
         $(document).ready(function() {
-            $('#data-table').DataTable();
+            $("#data-table").DataTable({
+                responsive: true, // Enable responsive mode
+                scrollY: '50vh', // Set the vertical scrolling height as a percentage of the viewport height
+                scrollCollapse: true, // Allow the table to be collapsed when the vertical space is insufficient
+            });
         });
 
         confirmDelete = function(button) {
@@ -80,8 +88,6 @@
             })
         }
     </script>
-    <!-- /.content -->
 @endsection
-@section('scripts')
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
 @endsection

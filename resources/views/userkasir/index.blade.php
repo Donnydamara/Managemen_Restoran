@@ -69,46 +69,48 @@
                                             </td>
                                             <td style="width: 200px; text-align: center;">
                                                 <!-- button detail -->
-                                                <button type="button" class="btn btn-primary mb-3 px-3" data-toggle="modal"
-                                                    data-target="#detailModal{{ $user->id }}">
+                                                <button type="button" class="btn btn-primary mb-3 px-3"
+                                                    data-bs-toggle="modal" data-bs-target="#detailModal{{ $user->id }}">
                                                     <i class="fa-solid fa-circle-info"></i>
-
                                                 </button>
-                                                <!-- Add the modal HTML block inside the loop -->
+
+                                                <!-- Detail Modal -->
                                                 <div class="modal fade" id="detailModal{{ $user->id }}" tabindex="-1"
-                                                    role="dialog" aria-labelledby="detailModalLabel{{ $user->id }}"
+                                                    aria-labelledby="detailModalLabel{{ $user->id }}"
                                                     aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
+                                                    <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title"
                                                                     id="detailModalLabel{{ $user->id }}">
-                                                                    Detail
-                                                                    User: {{ $user->name }}</h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
+                                                                    Detail User: {{ $user->name }}</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <table class="table table-bordered">
-                                                                    <tr>
-                                                                        <th>No HP</th>
-                                                                        <td>{{ $user->no_hp }}</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th>Tanggal Lahir</th>
-                                                                        <td>{{ $user->tanggal_lahir }}</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th>Tempat Lahir</th>
-                                                                        <td>{{ $user->tempat_lahir }}</td>
-                                                                    </tr>
-                                                                </table>
+                                                                <!-- Card View for Details -->
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <table class="table table-bordered">
+                                                                            <tr>
+                                                                                <th>No HP</th>
+                                                                                <td>{{ $user->no_hp }}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>Tanggal Lahir</th>
+                                                                                <td>{{ $user->tanggal_lahir }}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>Tempat Lahir</th>
+                                                                                <td>{{ $user->tempat_lahir }}</td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Close</button>
+                                                                    data-bs-dismiss="modal">Close</button>
                                                             </div>
                                                         </div>
                                                     </div>

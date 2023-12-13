@@ -95,7 +95,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#data-table').DataTable();
+            $("#data-table").DataTable({
+                responsive: true, // Enable responsive mode
+                scrollY: '50vh', // Set the vertical scrolling height as a percentage of the viewport height
+                scrollCollapse: true, // Allow the table to be collapsed when the vertical space is insufficient
+            });
         });
     </script>
     <!-- /.content -->
