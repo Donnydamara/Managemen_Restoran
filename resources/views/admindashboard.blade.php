@@ -209,7 +209,16 @@
             });
         });
     </script>
+
     <style>
+        .table.dataTable {
+            width: 100%;
+            margin: 0 auto;
+            clear: both;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
         .img-dashboard {
             text-align: center;
         }

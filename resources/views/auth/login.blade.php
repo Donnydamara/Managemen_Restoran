@@ -4,15 +4,12 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
-
-
                 <form class="login100-form validate-form" action="{{ route('login') }}" method="post">
                     @csrf
                     <span class="login100-form-title">
                         <div>
                             <img class="imagelogo" src="image/logo.jpg" alt="IMG">
                         </div>
-
                         Member Login
                     </span>
 
@@ -45,12 +42,40 @@
                     @enderror
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" type="submit">
-                            Login
-                        </button>
+                        <button class="login100-form-btn" type="submit">Login</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+    <style>
+        @media (max-width: 768px) {
+
+            /* Styles for tablets and smartphones */
+            .container-login100 {
+                width: 100%;
+            }
+
+            .wrap-login100 {
+                width: 100%;
+                margin: 0 auto;
+            }
+
+            .login100-form {
+                width: 100%;
+            }
+
+            .wrap-input100 {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+
+            .container-login100-form-btn {
+                width: 100%;
+            }
+        }
+
+        /* Additional styling for your login page goes here */
+    </style>
 @endsection
