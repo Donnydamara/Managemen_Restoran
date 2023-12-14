@@ -139,6 +139,10 @@ Route::prefix('manager')->middleware(['auth', 'manager'])->group(function () {
     Route::get('/omsetrestoran', 'OmsetRestoranController@index')->name('manager.omsetrestoran');
     Route::get('/omsetrestoran/filter', [OmsetRestoranController::class, 'filter'])->name('omset.filter');
     Route::post('/omsetrestoran/filtersubmit', [OmsetRestoranController::class, 'filtersubmit'])->name('omset.filtersubmit');
+
+    // cetak omset restoran
+    Route::get('/cetakomsetrestoran', 'OmsetRestoranController@exportPDF')->name('omset.export.pdf');
+    Route::get('omset/export/excel', 'OmsetRestoranController@exportExcel')->name('omset.export.excel');
 });
 
 // ============================================== Kasir System =====================================================//

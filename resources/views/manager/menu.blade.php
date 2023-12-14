@@ -1,164 +1,152 @@
 @extends('layouts.master')
 
 @section('content')
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Daftar Menu</h1>
-                </div><!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('manager.dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Daftar Menu</li>
-                    </ol>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Menu</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="{{ route('manager.dashboard') }}">Dashboard</a></li>
+                    <li class="breadcrumb-item active">Menu</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
 
-    <!-- Main content -->
-    <div class="content">
-        <div class="container-fluid">
+<!-- Main content -->
+<div class="content">
+    <div class="container-fluid">
 
-            <div class="card">
-                <div class="card-header text-left">
-                    <a href="{{ route('createMenu') }}" class="btn btn-success px-4" role="button"><i
-                            class="fa-solid fa-plus"></i> Tambah Menu</a>
-                </div>
-                <div class="card-body">
-                    <table class="table table-hover mb-0" id="data-table">
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>Foto</th>
-                                <th>Menu</th>
-                                <th>Kategori</th>
-                                <th>Harga</th>
+        <div class="card">
+            <div class="card-header text-left">
+                <h4>Daftar Menu</h4>
+                <hr>
+                <a href="{{ route('createMenu') }}" class="btn btn-success px-4" role="button"><i class="fa-solid fa-plus"></i> Tambah Menu</a>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover mb-0" id="data-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Foto</th>
+                            <th>Menu</th>
+                            <th>Kategori</th>
+                            <th>Harga</th>
 
-                                <th style="width: 180px; text-align: center;">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($menu as $m)
-                                <tr>
-                                    <td> {{ $loop->index + 1 }}</td>
-                                    <td>
-                                        @if ($m->image)
-                                            <img src="{{ asset('/img/menu/' . $m->image) }}" alt="Menu Photo"
-                                                style="max-width: 200px;">
-                                        @else
-                                            No photo available
-                                        @endif
-                                    </td>
-                                    <td>
-                                        {{ $m->nama_menu }}
-                                    </td>
-                                    <td>
-                                        @if ($m->kategori)
-                                            {{ $m->kategori->kategori }}
-                                        @else
-                                            Kategori menu belum dimasukkan
-                                        @endif
-                                    </td>
-                                    <td> Rp. {{ number_format($m->harga) }}</td>
+                            <th style="width: 180px; text-align: center;">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($menu as $m)
+                        <tr>
+                            <td> {{ $loop->index + 1 }}</td>
+                            <td>
+                                @if ($m->image)
+                                <img src="{{ asset('/img/menu/' . $m->image) }}" alt="Menu Photo" style="width: 100px; height: 100px;">
+                                @else
+                                No photo available
+                                @endif
+                            </td>
+                            <td>
+                                {{ $m->nama_menu }}
+                            </td>
+                            <td>
+                                @if ($m->kategori)
+                                {{ $m->kategori->kategori }}
+                                @else
+                                Kategori menu belum dimasukkan
+                                @endif
+                            </td>
+                            <td> Rp. {{ number_format($m->harga) }}</td>
 
-                                    <td style="width: 150px;" class="text-center">
-                                        <button type="button" class="btn btn-primary btn-sm mb-2 px-5"
-                                            data-bs-toggle="modal" data-bs-target="#menuDetailModal{{ $m->id }}">
-                                            <i class="fa-solid fa-circle-info"></i>Detail
-                                        </button>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="menuDetailModal{{ $m->id }}" tabindex="-1"
-                                            aria-labelledby="menuDetailModalLabel{{ $m->id }}" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title"
-                                                            id="menuDetailModalLabel{{ $m->id }}">Detail Menu</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
+                            <td style="width: 150px;" class="text-center">
+                                <button type="button" class="btn btn-primary btn-sm mb-2 px-5" data-bs-toggle="modal" data-bs-target="#menuDetailModal{{ $m->id }}">
+                                    <i class="fa-solid fa-circle-info"></i>Detail
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="menuDetailModal{{ $m->id }}" tabindex="-1" aria-labelledby="menuDetailModalLabel{{ $m->id }}" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="menuDetailModalLabel{{ $m->id }}">Detail Menu</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <img src="{{ asset('img/menu/' . $m->image) }}" alt="Gambar Menu" style="width: 300px; height: 300px;" class="img-fluid">
                                                     </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <img src="{{ asset('img/menu/' . $m->image) }}"
-                                                                    alt="Gambar Menu" class="img-fluid">
-                                                            </div>
-                                                            <div class="col-md-6" style="text-align: justify;">
-                                                                <!-- Tempat untuk menampilkan detail menu -->
-                                                                <p>Nama Menu: <span> {{ $m->nama_menu }}</span></p>
-                                                                <p>Kategori: <span>
-                                                                        @if ($m->kategori)
-                                                                            {{ $m->kategori->kategori }}
-                                                                        @else
-                                                                            Kategori menu belum dimasukkan
-                                                                        @endif
-                                                                    </span></p>
-                                                                <p>Harga: <span> {{ $m->harga }}</span></p>
-                                                                <p>Deskripsi: <span> {{ $m->deskripsi }}</span></p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                            data-bs-dismiss="modal">Close</button>
+                                                    <div class="col-md-6" style="text-align: justify;">
+                                                        <!-- Tempat untuk menampilkan detail menu -->
+                                                        <p>Nama Menu: <span> {{ $m->nama_menu }}</span></p>
+                                                        <p>Kategori: <span>
+                                                                @if ($m->kategori)
+                                                                {{ $m->kategori->kategori }}
+                                                                @else
+                                                                Kategori menu belum dimasukkan
+                                                                @endif
+                                                            </span></p>
+                                                        <p>Harga: <span> {{ $m->harga }}</span></p>
+                                                        <p>Deskripsi: <span> {{ $m->deskripsi }}</span></p>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
                                         </div>
-                                        <!-- end modal-->
+                                    </div>
+                                </div>
+                                <!-- end modal-->
 
-                                        <a href="{{ route('editMenu', ['id' => $m->id]) }}"
-                                            class="btn btn-warning btn-sm mb-2 px-3" role="button"><i
-                                                class="fa-solid fa-pen-to-square"></i> Edit</a>
-                                        <a onclick="confirmDelete(this)"
-                                            data-url="{{ route('deleteMenu', ['id' => $m->id]) }}"
-                                            class="btn btn-danger btn-sm mb-2 px-2" role="button"><i
-                                                class="fa-solid fa-trash-can"></i> Hapus</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                                <a href="{{ route('editMenu', ['id' => $m->id]) }}" class="btn btn-warning btn-sm mb-2 px-3" role="button"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                <a onclick="confirmDelete(this)" data-url="{{ route('deleteMenu', ['id' => $m->id]) }}" class="btn btn-danger btn-sm mb-2 px-2" role="button"><i class="fa-solid fa-trash-can"></i> Hapus</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
+        </div>
 
 
-
-        </div><!-- /.container-fluid -->
-    </div>
+    </div><!-- /.container-fluid -->
+</div>
 
 @section('addJavascript')
-    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            $("#data-table").DataTable({
-                responsive: true, // Enable responsive mode
-                scrollY: '50vh', // Set the vertical scrolling height as a percentage of the viewport height
-                scrollCollapse: true, // Allow the table to be collapsed when the vertical space is insufficient
-            });
+<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/sweetalert.min.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $("#data-table").DataTable({
+            responsive: true, // Enable responsive mode
+            scrollY: '50vh', // Set the vertical scrolling height as a percentage of the viewport height
+            scrollCollapse: true, // Allow the table to be collapsed when the vertical space is insufficient
         });
-    </script>
+    });
+</script>
 
-    <script>
-        confirmDelete = function(button) {
-            var url = $(button).data('url');
-            swal({
-                'title': 'Konfirmasi Hapus',
-                'text': 'Apakah Kamu Yakin Ingin Menghapus Data Ini?',
-                'dangermode': true,
-                'buttons': true
-            }).then(function(value) {
-                if (value) {
-                    window.location = url;
-                }
-            })
-        }
-    </script>
+<script>
+    confirmDelete = function(button) {
+        var url = $(button).data('url');
+        swal({
+            'title': 'Konfirmasi Hapus',
+            'text': 'Apakah Kamu Yakin Ingin Menghapus Data Ini?',
+            'dangermode': true,
+            'buttons': true
+        }).then(function(value) {
+            if (value) {
+                window.location = url;
+            }
+        })
+    }
+</script>
 @endsection
 <!-- /.content -->
 @endsection
