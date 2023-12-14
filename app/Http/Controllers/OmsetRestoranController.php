@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\DetailPesanan;
 use App\Menu;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\OmsetExport;
 
 class OmsetRestoranController extends Controller
 {
@@ -22,6 +24,22 @@ class OmsetRestoranController extends Controller
             'menu' => $menu,
             'detail_pesanan' => $detail_pesanan,
         ]);
+    }
+
+    public function exportPDF()
+    {
+        $menu = Menu::with('kategori')->get();
+        $detail_pesanan = DetailPesanan::all();
+
+        return view('manager.cetakomsetrestoran', [
+            'menu' => $menu,
+            'detail_pesanan' => $detail_pesanan,
+        ]);
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new OmsetExport, 'omset-restoran.xlsx');
     }
 
     public function filter(Request $request)
@@ -55,7 +73,6 @@ class OmsetRestoranController extends Controller
         }
 
         $detail_pesanan = $detail_pesanan->get();
-
 
         return view('manager.omsetrestoran', [
             'detail_pesanan' => $detail_pesanan,
