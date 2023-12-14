@@ -16,6 +16,7 @@ class Menu extends Model
         'image',
     ];
 
+    // Model Menu
     public function kategori()
     {
         return $this->belongsTo(Kategori::class, 'id_kategori', 'id');

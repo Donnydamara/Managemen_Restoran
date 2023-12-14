@@ -2,27 +2,27 @@
 <aside class="main-sidebar bg-white elevation-3" style="text-align: left;">
     <!-- Brand Logo -->
     <a href="{{ route('dashboard') }}" class="brand-link" style="text-align: center; display: block;">
-        <img src="{{ asset('img/Logo1.png') }}" alt="AdminLTE Logo" 
-            style="opacity: .8; width: 150px;  margin: -50px ">
+        <img src="{{ asset('img/Logo1.png') }}" alt="AdminLTE Logo" style="opacity: .8; width: 150px;  margin: -50px ">
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
         @auth
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="{{ asset('img/user-photo-default.png') }}" class="img-circle elevation-2" alt="User Image">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="{{ asset('img/user-photo-default.png') }}" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a href="{{ route('profile.show') }}" class="d-block">{{ Auth::user()->name }}</a>
+                </div>
             </div>
-            <div class="info">
-                <a href="{{ route('profile.show') }}" class="d-block">{{ Auth::user()->name }}</a>
-            </div>
-        </div>
         @endauth
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                data-accordion="false">
                 {{-- <li class="nav-item">
                     <a href="{{ route('dashboard') }}" class="nav-link">
                 <i class="nav-icon fa fa-dashboard"></i>
@@ -30,51 +30,63 @@
                 </a>
                 </li> --}}
                 @if (Auth::check() && Auth::user()->role == '0')
-                {{-- Admin --}}
-                <li class="nav-item">
-                    <a href="{{ route('admin.dashboard') }}" class="nav-link">
-                        <i class="nav-icon fa fa-dashboard"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
+                    {{-- Admin --}}
+                    <li class="nav-item">
+                        <a href="{{ route('admin.dashboard') }}" class="nav-link">
+                            <i class="nav-icon fa fa-dashboard"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
                 @endif
 
                 @if (Auth::check() && Auth::user()->role == '1')
-                {{-- Manajer --}}
-                <li class="nav-item">
-                    <a href="{{ route('manager.dashboard') }}" class="nav-link">
-                        <i class="nav-icon fa fa-dashboard"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('manager.kategori')}}" class="nav-link">
-                        <i class="nav-icon fa fa-book"></i>
-                        <p>Kategori Menu</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('manager.menu')}}" class="nav-link">
-                        <img src="{{ asset('img/Logo4.png') }}" alt="Daftar Menu" 
-                            style="opacity: .7; width: 26px; margin-right: 4px;">
+                    {{-- Manajer --}}
+                    <li class="nav-item">
+                        <a href="{{ route('manager.dashboard') }}" class="nav-link">
+                            <i class="nav-icon fa fa-dashboard"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('manager.kategori') }}" class="nav-link">
+                            <i class="nav-icon fa fa-book"></i>
+                            <p>Kategori Menu</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('manager.menu') }}" class="nav-link">
+                            <img src="{{ asset('img/Logo4.png') }}" alt="Daftar Menu"
+                                style="opacity: .7; width: 26px; margin-right: 4px;">
                             <p>Daftar Menu</p>
-                    </a>
-                </li>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('manager.omsetrestoran') }}" class="nav-link">
+                            <i class="nav-icon fa fa-database"></i>
+                            <p>Omset Restoran</p>
+                        </a>
+                    </li>
                 @endif
                 @if (Auth::check() && Auth::user()->role == '2')
-                {{-- Kasir --}}
-                <li class="nav-item">
-                    <a href="{{ route('kasir.dashboard') }}" class="nav-link">
-                        <i class="nav-icon fa fa-dashboard"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                        <a href="{{ route('pesanan') }}" class="nav-link">
+                    {{-- Kasir --}}
+                    <li class="nav-item">
+                        <a href="{{ route('kasir.dashboard') }}" class="nav-link">
                             <i class="nav-icon fa fa-dashboard"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('pesanan') }}" class="nav-link">
+                            <i class='nav-icon fas fa-receipt'></i>
                             <p>Pesanan</p>
                         </a>
-                </li>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('transaksi.riwayattransaksi') }}" class="nav-link">
+                            <i class="nav-icon fa fa-history"></i>
+                            <p>Riwayat Transaksi</p>
+                        </a>
+                    </li>
                 @endif
                 @if (Auth::check() && Auth::user()->role == '0')
                     {{-- Admin & Manajer --}}
@@ -96,7 +108,7 @@
                 @endif
                 <li class="nav-item">
                     <a href="{{ route('about') }}" class="nav-link">
-                        <i class="nav-icon fa fa-about"></i>
+                        <i class="nav-icon fa fa-info-circle"></i>
                         <p>About</p>
                     </a>
                 </li>

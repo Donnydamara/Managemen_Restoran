@@ -4,11 +4,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserKasirController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\OmsetRestoranController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ChartController;
-
-//use App\Kategori;
-//use App\Menu;
+use App\Http\Controllers\RiwayatTransaksiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 /*
@@ -38,6 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserController::class, 'showProfile'])->name('profile.show');
     Route::get('/profile/edit', [UserController::class, 'editProfile'])->name('profile.edit');
     Route::put('/profile/update', [UserController::class, 'updateProfile'])->name('profile.update');
+    Route::post('/profile/validate-password', [UserController::class, 'validatePassword'])
+        ->name('profile.validate-password');
 });
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
@@ -63,7 +64,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
 
     // Hapus resource yang ditentukan dari penyimpanan
-    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::get('/users/reset-password/{id}', 'UserController@resetPassword')->name('users.resetPassword');
 });
 
@@ -131,8 +132,13 @@ Route::prefix('manager')->middleware(['auth', 'manager'])->group(function () {
     Route::put('/users/{user}', [UserKasirController::class, 'update'])->name('userkasir.update');
 
     // Hapus resource yang ditentukan dari penyimpanan
-    Route::delete('/users/{user}', [UserKasirController::class, 'destroy'])->name('userkasir.destroy');
+    Route::get('/users/{user}', [UserKasirController::class, 'destroy'])->name('userkasir.destroy');
     Route::get('/users/reset-password/{id}', 'UserKasirController@resetPassword')->name('userkasir.resetPassword');
+
+    // Show omset restoran
+    Route::get('/omsetrestoran', 'OmsetRestoranController@index')->name('manager.omsetrestoran');
+    Route::get('/omsetrestoran/filter', [OmsetRestoranController::class, 'filter'])->name('omset.filter');
+    Route::post('/omsetrestoran/filtersubmit', [OmsetRestoranController::class, 'filtersubmit'])->name('omset.filtersubmit');
 });
 
 // ============================================== Kasir System =====================================================//
@@ -147,4 +153,8 @@ Route::prefix('kasir')->middleware(['auth', 'kasir'])->group(function () {
     Route::get('/order/hapus/{id}', [PesananController::class, 'destroy'])->name('pesanan.destroy');
     Route::post('/order/proses', [PesananController::class, 'proses'])->name('detailpesanan.proses');
     Route::get('/order/viewproses/{id_pesanan}', [PesananController::class, 'viewproses'])->name('detailpesanan.viewproses');
+
+    Route::get('/transaksi', [RiwayatTransaksiController::class, 'index'])->name('transaksi.riwayattransaksi');
+    Route::get('/transaksi/filter/{filter}', [RiwayatTransaksiController::class, 'filter'])->name('transaksi.filter');
+    Route::post('/transaksi/filtersubmit', [RiwayatTransaksiController::class, 'filtersubmit'])->name('transaksi.filtersubmit');
 });

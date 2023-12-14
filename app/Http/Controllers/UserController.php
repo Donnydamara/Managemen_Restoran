@@ -42,7 +42,7 @@ class UserController extends Controller
             'tanggal_lahir' => ['required', 'string', 'max:255'],
             'tempat_lahir' => ['required', 'string', 'max:255'],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
-            'role' => ['required', 'integer', 'in:0,1,2'],
+
             'photo' => ['file'],
         ]);
 
@@ -72,11 +72,28 @@ class UserController extends Controller
 
         return redirect()->route('profile.show')->with('success', 'User updated successfully');
     }
+    public function validatePassword(Request $request)
+    {
+        $user = auth()->user();
+
+        $request->validate([
+            'validationPassword' => ['required', function ($attribute, $value, $fail) use ($user) {
+                if (!Hash::check($value, $user->password)) {
+                    $fail('The password is incorrect.');
+                }
+            }],
+        ]);
+
+        // Password valid, arahkan ke halaman edit profil
+        return redirect()->route('profile.edit');
+    }
+
+
     public function index()
     {
-        
-        // Hanya tampilkan user dengan role 2 jika role user adalah 1 (Admin)
-        $users = Auth::user()->role == 1 ? User::where('role', 2)->get() : User::all();
+
+        // Mengambil hanya pengguna dengan role selain 0
+        $users = User::where('role', '!=', 0)->get();
 
         return view('users.index', compact('users'));
     }
