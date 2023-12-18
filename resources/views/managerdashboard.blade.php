@@ -84,7 +84,7 @@
         </div>
     </div>
 
-    <div class="container-fluid mt-3">
+  
         <div class="row">
             <div class="col-md-3">
                 <div id="chart2a" style="width:100%; max-width:310px; height:230px;"></div>
@@ -157,50 +157,78 @@
             </div>
 
         </div>
-
-
     </div>
-    <div class="container-fluid mt-3">
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript">
-            // Load library visualisasi dan paket 'corechart'.
-            google.charts.load('current', {
-                'packages': ['corechart']
-            });
 
-            // Panggil fungsi drawChart saat library sudah dimuat.
-            google.charts.setOnLoadCallback(drawChart);
+    <
+        <div class="row">
+            <div class="col-md-3">
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                <script type="text/javascript">
+                    // Load library visualisasi dan paket 'corechart'.
+                    google.charts.load('current', {
+                        'packages': ['corechart']
+                    });
 
-            function drawChart() {
-                // Buat data tabel.
-                var data = new google.visualization.DataTable();
-                data.addColumn('string', 'Kategori');
-                data.addColumn('number', 'Jumlah');
-                data.addRows([
-                    @foreach ($data as $item)
-                        ['{{ $item->id_kategori }}', {{ $item->total }}],
-                    @endforeach
-                ]);
+                    // Panggil fungsi drawChart saat library sudah dimuat.
+                    google.charts.setOnLoadCallback(drawChart);
 
-                // Set opsi chart.
-                var options = {
-                    title: 'Jumlah Menu per Kategori',
-                    is3D: true,
-                };
+                    function drawChart() {
+                        // Buat data tabel.
+                        var data = new google.visualization.DataTable();
+                        data.addColumn('string', 'Kategori');
+                        data.addColumn('number', 'Jumlah');
+                        data.addRows([
+                            @foreach ($data as $item)
+                                ['{{ $item->id_kategori }}', {{ $item->total }}],
+                            @endforeach
+                        ]);
 
-                // Instansiasi dan menggambar chart, melewatkan beberapa opsi.
-                var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-                chart.draw(data, options);
-            }
-        </script>
-        </head>
+                        // Set opsi chart.
+                        var options = {
+                            title: 'Jumlah Menu per Kategori',
+                            is3D: true,
+                        };
 
-        <body>
-            <!-- Menampilkan diagram lingkaran -->
-            <div id="chart_div" style="width: 310px; height: 280px;"></div>
-        </body>
+                        // Instansiasi dan menggambar chart, melewatkan beberapa opsi.
+                        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                        chart.draw(data, options);
+                    }
+                </script>
+                <body>
+                    <!-- Menampilkan diagram lingkaran -->
+                    <div id="chart_div" style="width: 310px; height: 270px;"></div>
+                </body>
+            </div>
 
-        </html>
+            <div class="col-md-2">
+                <div id="area_chart_div" style="width: 350%; height: 270px;"></div>
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                <script>
+                    google.charts.load('current', {'packages':['corechart']});
+                    google.charts.setOnLoadCallback(drawAreaChart);
+
+                    function drawAreaChart() {
+                        var data = google.visualization.arrayToDataTable([
+                            ['Week', 'Profit'],
+                            ['1', 1000],
+                            ['2', 1170],
+                            ['3', 660],
+                            ['4', 1030],
+                        ]);
+
+                        var options = {
+                            title: 'Company Performance',
+                            hAxis: { title: 'Week', titleTextStyle: { color: '#333' } },
+                            vAxis: { minValue: 0 },
+                        };
+
+                        var chart = new google.visualization.AreaChart(document.getElementById('area_chart_div'));
+                        chart.draw(data, options);
+                    }
+                </script>
+            </div>
+        </div>
+
     </div>
 
 
