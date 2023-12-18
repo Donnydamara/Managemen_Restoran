@@ -82,7 +82,7 @@ class PesananController extends Controller
         $detail_pesanan->subtotal = $subtotal;
         $detail_pesanan->save();
 
-        return redirect(route('pesanan'));
+        return redirect(route('pesanan'))->with('success', 'Menu berhasil ditambahkan');; 
     }
 
     /**
@@ -133,7 +133,7 @@ class PesananController extends Controller
 
         $detailPesanan->delete();
 
-        return redirect(route('pesanan'))->with('success', 'Data Berhasil di Hapus!');
+        return redirect(route('pesanan'))->with('success', 'Menu berhasil di Hapus!');
     }
 
     public function proses(Request $request) {
@@ -149,7 +149,7 @@ class PesananController extends Controller
 
         $pesanan->update($input);
 
-        return redirect(route('detailpesanan.viewproses', ['id_pesanan' => $id_pesanan]));
+        return redirect(route('detailpesanan.viewproses', ['id_pesanan' => $id_pesanan]))->with('success', 'Pesanan berhasil!');;
     }
 
     public function viewproses($id_pesanan) {
