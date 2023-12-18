@@ -1,9 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-    @if (Session::has('success'))
-    @endif
-
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -29,7 +26,9 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="info-box">
-                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-users"></i></span>
+                        <span class="info-box-icon bg-info elevation-1">
+                            <img src="{{ asset('img/man.png') }}" alt="Logo">
+                        </span>
                         <div class="info-box-content">
                             <span class="info-box-text">Total Users</span>
                             <span class="info-box-number">{{ $totalUser }}</span>
@@ -38,7 +37,9 @@
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="info-box">
-                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-book"></i></span>
+                        <span class="info-box-icon bg-success elevation-1">
+                            <img src="{{ asset('img/history-book.png') }}" alt="Logo">
+                        </span>
                         <div class="info-box-content">
                             <span class="info-box-text">Total Pesanan</span>
                             <span class="info-box-number">{{ $totalDetailPesanan }}</span>
@@ -47,16 +48,20 @@
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="info-box">
-                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-burger"></i></span>
+                        <span class="info-box-icon bg-warning elevation-1">
+                            <img src="{{ asset('img/menu.png') }}" alt="Logo">
+                        </span>
                         <div class="info-box-content">
-                            <span class="info-box-text">Total Katgori Menu</span>
+                            <span class="info-box-text">Total Kategori Menu</span>
                             <span class="info-box-number">{{ $totalKategori }}</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <div class="info-box">
-                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-book"></i></span>
+                        <span class="info-box-icon bg-warning elevation-1">
+                            <img src="{{ asset('img/fast-food.png') }}" alt="Logo">
+                        </span>
                         <div class="info-box-content">
                             <span class="info-box-text">Total Menu</span>
                             <span class="info-box-number">{{ $totalMenu }}</span>
@@ -74,45 +79,49 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table class="table table-bordered" id="tbl-user">
-                                <thead>
-                                    <tr class="text-center">
-                                        <th>Foto</th>
-                                        <th>ID</th>
-                                        <th>Nama</th>
-                                        <th>Role</th>
-                                        <th>No. Hp</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($UserData as $User)
-                                        <tr class="text-center">
-                                            <td>
-                                                @if ($User->photo_path)
-                                                    <img src="{{ asset('image/profil/' . $User->photo_path) }}"
-                                                        alt="Profile Photo" class="rounded-circle"
-                                                        style="width: 100px; height: 100px; object-fit: cover;">
-                                                @else
-                                                    No photo available
-                                                @endif
-                                            </td>
-                                            <td>{{ $User->id }}</td>
-                                            <td>{{ $User->name }}</td>
-                                            <td>
-                                                @if ($User->role == 1)
-                                                    Manager
-                                                @elseif($User->role == 2)
-                                                    Kasir
-                                                @else
-                                                    Undefined Role
-                                                @endif
-                                            </td>
-                                            <td>{{ $User->no_hp }}</td>
-                                        </tr>
-                                    @endforeach
+                            <div class="content">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="tbl-user">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th>Foto</th>
+                                                <th>ID</th>
+                                                <th>Nama</th>
+                                                <th>Role</th>
+                                                <th>No. Hp</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($UserData as $User)
+                                                <tr class="text-center">
+                                                    <td>
+                                                        @if ($User->photo_path)
+                                                            <img src="{{ asset('image/profil/' . $User->photo_path) }}"
+                                                                alt="Profile Photo" class="rounded-circle"
+                                                                style="width: 100px; height: 100px; object-fit: cover;">
+                                                        @else
+                                                            No photo available
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ $User->id }}</td>
+                                                    <td>{{ $User->name }}</td>
+                                                    <td>
+                                                        @if ($User->role == 1)
+                                                            Manager
+                                                        @elseif($User->role == 2)
+                                                            Kasir
+                                                        @else
+                                                            Undefined Role
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ $User->no_hp }}</td>
+                                                </tr>
+                                            @endforeach
 
-                                </tbody>
-                            </table>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -127,22 +136,26 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table class="table table-bordered" id="tbl-kategori">
-                                <thead>
-                                    <tr class="text-center">
-                                        <th>ID</th>
-                                        <th>Kategori Menu</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($KategoriData as $Kategori)
-                                        <tr class="text-center">
-                                            <td>{{ $Kategori->id }}</td>
-                                            <td>{{ $Kategori->kategori }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                            <div class="content">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="tbl-kategori">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <th>ID</th>
+                                                <th>Kategori Menu</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($KategoriData as $Kategori)
+                                                <tr class="text-center">
+                                                    <td>{{ $Kategori->id }}</td>
+                                                    <td>{{ $Kategori->kategori }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -159,64 +172,109 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table class="table table-bordered" id="tbl-menu">
-                                <thead>
-                                    <tr class="text-center">
-                                        <td>Foto</td>
-                                        <td>id_kategori</td>
-                                        <td>Menu</td>
-                                        <td>harga</td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($MenuData as $Menu)
-                                        <tr class="text-center">
-                                            <td>
-                                                @if ($Menu->image)
-                                                    <img src="{{ asset('/img/menu/' . $Menu->image) }}" class="img-fluid "
-                                                        alt="Menu Photo"
-                                                        style="width: 70px; height: 70px; object-fit: cover;">
-                                                @else
-                                                    No photo available
-                                                @endif
-                                            </td>
-                                            <td>{{ $Menu->kategori->kategori }}</td>
-                                            <td>{{ $Menu->nama_menu }}</td>
-                                            <td>{{ $Menu->harga }}</td>
-                                        </tr>
-                                    @endforeach
+                            <div class="content">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="tbl-menu">
+                                        <thead>
+                                            <tr class="text-center">
+                                                <td>Foto</td>
+                                                <td>id_kategori</td>
+                                                <td>Menu</td>
+                                                <td>harga</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($MenuData as $Menu)
+                                                <tr class="text-center">
+                                                    <td>
+                                                        @if ($Menu->image)
+                                                            <img src="{{ asset('/img/menu/' . $Menu->image) }}"
+                                                                class="img-fluid " alt="Menu Photo"
+                                                                style="width: 70px; height: 70px; object-fit: cover;">
+                                                        @else
+                                                            No photo available
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ $Menu->kategori->kategori }}</td>
+                                                    <td>{{ $Menu->nama_menu }}</td>
+                                                    <td>{{ $Menu->harga }}</td>
+                                                </tr>
+                                            @endforeach
 
-                                </tbody>
-                            </table>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                        <!-- /.card-body -->
+
                     </div>
-                    <!-- /.card -->
+
                 </div>
             </div>
 
-        </div><!-- /.container-fluid -->
+        </div>
     </div>
     <!-- /.content -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#tbl-user, #tbl-kategori, #tbl-menu').DataTable({
-                responsive: true,
-                scrollY: '50vh',
-                scrollCollapse: true,
-            });
+            $('#tbl-user, #tbl-kategori, #tbl-menu').DataTable();
         });
     </script>
 
     <style>
-        .table.dataTable {
-            width: 100%;
-            margin: 0 auto;
-            clear: both;
-            border-collapse: collapse;
-            table-layout: fixed;
+        .info-box {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+        .info-box:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-box-icon img {
+            width: 70px;
+            height: auto;
+        }
+
+        .info-box-content {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .info-box-text {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .info-box-number {
+            display: block;
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .bg-info {
+            background-color: #17a2b8 !important;
+        }
+
+        .bg-success {
+            background-color: #28a745 !important;
+        }
+
+        .bg-warning {
+            background-color: #ffc107 !important;
+        }
+
+        .col-md-3 {
+            flex: 0 0 25%;
+            max-width: 25%;
         }
 
         .img-dashboard {
