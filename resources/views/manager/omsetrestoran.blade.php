@@ -31,7 +31,7 @@
                 <form action="{{ route('omset.filtersubmit') }}" method="POST">
                     @csrf
                     <div class="row pb-3">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label>Kategori:</label>
                             <select name="category" class="form-select">
                                 <option value="">Pilih Kategori</option>
@@ -40,15 +40,15 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label>Tgl mulai : </label>
                             <input type="date" id="start_date" name="start_date" class="form-control">
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label>Tgl selesai : </label>
                             <input type="date" id="end_date" name="end_date" class="form-control">
                         </div>
-                        <div class="col-md-3 pt-4">
+                        <div class="col-md-4 pt-4">
                             <button type="submit" class="btn btn-primary mt-2">
                                 <i class="fa fa-search"></i> Filter</button>
 
@@ -102,8 +102,6 @@
     $(document).ready(function() {
         $("#data-table").DataTable({
             responsive: true, // Enable responsive mode
-            scrollY: '50vh', // Set the vertical scrolling height as a percentage of the viewport height
-            scrollCollapse: true, // Allow the table to be collapsed when the vertical space is insufficient
         });
     });
 </script>
