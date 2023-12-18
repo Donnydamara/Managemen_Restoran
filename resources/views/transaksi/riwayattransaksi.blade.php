@@ -48,43 +48,45 @@
                 </div>
 
                 <div class="card-body">
-                    <table class="table table-hover table-bordered text-center" style="border: 1px solid #ccc;" id="data-table">
-                        <thead>
-                            <tr style="background-color: #2c3e50; color: white;">
-                                <th>No. Pesanan</th>
-                                <th>Jenis Pesanan</th>
-                                <th>Jenis Pembayaran</th>
-                                <th>User</th>
-                                <th>Tanggal Transaksi</th>
-                                <th>Subtotal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                            $grandTotal = 0;
-                            @endphp
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered text-center" style="border: 1px solid #ccc;" id="data-table">
+                            <thead>
+                                <tr style="background-color: #2c3e50; color: white;">
+                                    <th>No. Pesanan</th>
+                                    <th>Jenis Pesanan</th>
+                                    <th>Jenis Pembayaran</th>
+                                    <th>User</th>
+                                    <th>Tanggal Transaksi</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                $grandTotal = 0;
+                                @endphp
 
-                            @foreach ($pesanan as $pesanans)
-                            <tr>
-                                <td> {{ $pesanans->no_pesanan }} </td>
-                                <td> {{ $pesanans->jenis_pesanan }} </td>
-                                <td> {{ $pesanans->jenis_pembayaran }} </td>
-                                <td> {{ $pesanans->name }} </td>
-                                <td> {{ date('d F Y', strtotime($pesanans->created_at))  }} </td>
-                                <td>Rp. {{ number_format($pesanans->total_subtotal) }} </td>
-                            </tr>
-                            @php
-                            $grandTotal += $pesanans->total_subtotal;
-                            @endphp
+                                @foreach ($pesanan as $pesanans)
+                                <tr>
+                                    <td> {{ $pesanans->no_pesanan }} </td>
+                                    <td> {{ $pesanans->jenis_pesanan }} </td>
+                                    <td> {{ $pesanans->jenis_pembayaran }} </td>
+                                    <td> {{ $pesanans->name }} </td>
+                                    <td> {{ date('d F Y', strtotime($pesanans->created_at))  }} </td>
+                                    <td>Rp. {{ number_format($pesanans->total_subtotal) }} </td>
+                                </tr>
+                                @php
+                                $grandTotal += $pesanans->total_subtotal;
+                                @endphp
 
-                            @endforeach
+                                @endforeach
 
-                            <tr style="background-color: #2c3e50; color: white;">
-                                <th colspan="5">Grand Total</th>
-                                <td>Rp. {{ number_format($grandTotal) }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                <tr style="background-color: #2c3e50; color: white;">
+                                    <th colspan="5">Grand Total</th>
+                                    <td>Rp. {{ number_format($grandTotal) }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
