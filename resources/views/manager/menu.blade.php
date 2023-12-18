@@ -126,8 +126,6 @@
     $(document).ready(function() {
         $("#data-table").DataTable({
             responsive: true, // Enable responsive mode
-            scrollY: '50vh', // Set the vertical scrolling height as a percentage of the viewport height
-            scrollCollapse: true, // Allow the table to be collapsed when the vertical space is insufficient
         });
     });
 </script>
