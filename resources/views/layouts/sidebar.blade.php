@@ -12,8 +12,8 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="{{ asset('image/profil/' . Auth::user()->photo_path) }}" class="img-circle elevation-2"
-                        alt="User Image">
+                    <img src="{{ asset('image/profil/' . Auth::user()->photo_path) }}" alt="User Image"
+                        class="rounded-circle profile-image";>
                 </div>
                 <div class="info">
                     <a href="{{ route('profile.show') }}" class="d-block">{{ Auth::user()->name }}</a>
@@ -94,7 +94,9 @@
                         </a>
                     </li>
                 @endif
-
+                <li class="nav-item">
+                    <hr class="solid" style="border-top: 1px solid #b1a9a9;">
+                </li>
                 @if (Auth::check() && Auth::user()->role == '1')
                     <!-- Admin & Manajer -->
                     <li class="nav-item">
@@ -111,7 +113,9 @@
                         <p>About</p>
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <hr class="solid" style="border-top: 1px solid #b1a9a9;">
+                </li>
                 <li class="nav-item">
                     <form id="logout-form" action="{{ route('logout') }}" method="post">
                         @csrf
@@ -131,6 +135,34 @@
     <!-- /.sidebar -->
 
     <style>
+        .user-panel {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-panel .image img {
+
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            margin-left: -10px;
+        }
+
+        .user-panel .info a {
+            color: #007bff;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .user-panel .info a:hover {
+            text-decoration: underline;
+        }
+
         /* Desktop styles */
         .brand-link img {
             opacity: .8;
