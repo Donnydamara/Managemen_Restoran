@@ -2,6 +2,7 @@
 
 @section('content')
     @if (Session::has('success'))
+        {{-- Add your success message handling code here --}}
     @endif
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -23,54 +24,42 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
-                        <span class="info-box-icon text-bg-dark shadow-sm">
-                            <i class="bi bi-menu-up"></i>
+                    <div class="info-box bg-primary">
+                        <span class="info-box-icon text-white">
+                            <img src="{{ asset('img/fast-food.png') }}" alt="Logo">
                         </span>
                         <div class="info-box-content">
                             <span class="info-box-number" style="font-size: 25px;">{{ $tbl_menu }}</span>
                             <span class="info-box-text">Menu</span>
                         </div>
-                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box -->
                 </div>
-                <!-- /.col -->
                 <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
-                        <span class="info-box-icon text-bg-dark shadow-sm">
-                            <i class="bi bi-tags-fill"></i>
+                    <div class="info-box bg-success">
+                        <span class="info-box-icon text-white">
+                            <img src="{{ asset('img/menu.png') }}" alt="Logo">
                         </span>
-
                         <div class="info-box-content">
                             <span class="info-box-number" style="font-size: 25px;">{{ $tbl_kategori }}</span>
                             <span class="info-box-text">Kategori</span>
                         </div>
-                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box -->
                 </div>
-
                 <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
-                        <span class="info-box-icon text-bg-dark shadow-sm">
-                            <i class="nav-icon fa fa-line-chart"></i>
+                    <div class="info-box bg-info">
+                        <span class="info-box-icon text-white">
+                            <img src="{{ asset('img/profits.png') }}" alt="Logo">
                         </span>
-
                         <div class="info-box-content">
                             <span class="info-box-text">Profit</span>
                             <span class="info-box-number">760</span>
                         </div>
-                        <!-- /.info-box-content -->
                     </div>
-                    <!-- /.info-box -->
                 </div>
-                <!-- /.col -->
                 <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
-                        <span class="info-box-icon text-bg-dark shadow-sm">
-                            <!-- Use fas instead of fa for Font Awesome 5 and later -->
-                            <i class="nav-icon fa fa-cart-plus"></i>
+                    <div class="info-box bg-warning">
+                        <span class="info-box-icon text-white">
+                            <img src="{{ asset('img/money-transfer.png') }}" alt="Logo">
                         </span>
                         <div class="info-box-content">
                             <span class="info-box-number" style="font-size: 25px;">{{ $tbl_detail_pesanan }}</span>
@@ -78,12 +67,9 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- /.col -->
             </div>
         </div>
     </div>
-
 
     <div class="row">
         <div class="col-md-3">
@@ -96,19 +82,16 @@
                 google.charts.setOnLoadCallback(drawChart2a);
 
                 function drawChart2a() {
-                    // Create a data table
                     var data = new google.visualization.DataTable();
                     data.addColumn('string', 'Jenis Pesanan');
                     data.addColumn('number', 'Jumlah');
                     data.addRows(<?php echo json_encode($dataArray); ?>);
 
-                    // Set options
                     var options = {
                         title: 'Tipe Pesanan',
                         is3D: true
                     };
 
-                    // Instantiate and draw the chart
                     var chart = new google.visualization.PieChart(document.getElementById('chart2a'));
                     chart.draw(data, options);
                 }
@@ -119,7 +102,6 @@
             @if (!empty($menuLaris) && !empty($secondMenuLaris))
                 <div id="chartMenuLaris" style="width: 350%; height: 230px;"></div>
 
-                <!-- Include Google Charts CDN -->
                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                 <script type="text/javascript">
                     google.charts.load('current', {
@@ -132,7 +114,6 @@
                             ['Menu', 'Total Pesanan'],
                             ['{{ $menuLaris->nama_menu }}', {{ $menuLaris->total }}],
                             ['{{ $secondMenuLaris->nama_menu }}', {{ $secondMenuLaris->total }}]
-                            // Add more rows if needed
                         ]);
 
                         var options = {
@@ -143,7 +124,7 @@
                             hAxis: {
                                 title: 'Total Pesanan',
                                 minValue: 0,
-                                format: 'decimal' // Set the number format to decimal
+                                format: 'decimal'
                             },
                         };
 
@@ -155,24 +136,19 @@
                 <p>Tidak ada data menu laris.</p>
             @endif
         </div>
-
-    </div>
     </div>
 
-    < <div class="row">
+    <div class="row">
         <div class="col-md-3">
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
             <script type="text/javascript">
-                // Load library visualisasi dan paket 'corechart'.
                 google.charts.load('current', {
                     'packages': ['corechart']
                 });
 
-                // Panggil fungsi drawChart saat library sudah dimuat.
                 google.charts.setOnLoadCallback(drawChart);
 
                 function drawChart() {
-                    // Buat data tabel.
                     var data = new google.visualization.DataTable();
                     data.addColumn('string', 'Kategori');
                     data.addColumn('number', 'Jumlah');
@@ -182,20 +158,17 @@
                         @endforeach
                     ]);
 
-                    // Set opsi chart.
                     var options = {
                         title: 'Jumlah Menu per Kategori',
                         is3D: true,
                     };
 
-                    // Instansiasi dan menggambar chart, melewatkan beberapa opsi.
                     var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
                     chart.draw(data, options);
                 }
             </script>
 
             <body>
-                <!-- Menampilkan diagram lingkaran -->
                 <div id="chart_div" style="width: 310px; height: 270px;"></div>
             </body>
         </div>
@@ -239,13 +212,37 @@
                 }
             </script>
         </div>
+    </div>
 
-        </div>
+@section('scripts')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Add your custom styles here */
+        .info-box {
+            cursor: pointer;
+        }
 
-        </div>
+        .info-box:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease-in-out;
+        }
 
+        .info-box .info-box-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    @section('scripts')
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    @endsection
+        .info-box .info-box-content {
+            text-align: center;
+        }
+
+        #chart2a,
+        #chartMenuLaris,
+        #chart_div,
+        #area_chart_div {
+            margin-top: 20px;
+        }
+    </style>
+@endsection
 @endsection
