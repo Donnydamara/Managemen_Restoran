@@ -23,9 +23,11 @@
                 aria-haspopup="true" aria-expanded="false">
                 <div class="d-flex align-items-center">
                     <img src="{{ asset('image/profil/' . Auth::user()->photo_path) }}" alt="User Image"
-                        style="width: 28px; margin-right: 8px; border-radius: 50%;">
-                    <span style="color: #fff;">Hi, {{ Auth::user()->name }}</span>
+                        class="rounded-circle profile-image"
+                        style="max-width: 35px; max-height: 35px; margin-botton:150px;">
+                    <span style="color: #fff; margin-bottom: 15px;">Hi, {{ Auth::user()->name }}</span>
                 </div>
+
             </a>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">

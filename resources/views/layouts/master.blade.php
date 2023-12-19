@@ -43,14 +43,6 @@
         @include('layouts.footer')
     </div>
     <style>
-        .content-wrapper {
-
-            overflow-y: auto;
-            /* Menambahkan scroll vertikal jika konten melebihi tinggi elemen */
-            max-height: calc(100vh - 100px);
-            /* Menentukan tinggi maksimum elemen, sesuaikan dengan kebutuhan Anda */
-        }
-
         Desktop styles .content-wrapper {
             overflow-y: auto;
             max-height: calc(100vh - 100px);

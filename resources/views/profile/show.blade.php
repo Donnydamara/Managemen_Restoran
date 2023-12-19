@@ -14,11 +14,10 @@
     <!-- Main content -->
     <div class="container">
         <div class="row">
-            <div class="col-md-4 text-center">
-                <div>
-                    <img src="{{ asset('image/profil/' . $user->photo_path) }}" alt="Profile Picture"
-                        class="img-fluid rounded-circle img-thumbnail foto-profile">
-                </div>
+            <div class="col-md-4 img-container">
+                <div class="square-border"></div>
+                <img src="{{ asset('image/profil/' . $user->photo_path) }}" alt="Profile Picture"
+                    class="img-fluid rounded-circle img-thumbnail foto-profile">
             </div>
             <div class="col-md-8 ">
                 <div class="card inf-content">
@@ -104,20 +103,40 @@
 
 
     <style>
-        .foto-profile {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            object-fit: cover;
-            margin-top: 70px;
+        .img-container {
+            position: relative;
+            width: 350px;
+            /* Sesuaikan dengan ukuran yang Anda inginkan */
+            height: 350px;
+            /* Sesuaikan dengan ukuran yang Anda inginkan */
+            overflow: hidden;
+            border-radius: 50%;
+            /* Membuat gambar menjadi bulat */
+            margin: 0 auto;
+            /* Pusatkan gambar */
+            margin-top: 60px;
         }
 
-        .bold-image {
-            border: 4px solid #000;
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
+
+        .square-border {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #fff;
+            /* Warna border sesuaikan kebutuhan Anda */
+            box-sizing: border-box;
+            border-radius: 10px;
+            /* Membuat border menjadi persegi */
+        }
+
+
 
         .inf-content {
             margin-top: 5%;
