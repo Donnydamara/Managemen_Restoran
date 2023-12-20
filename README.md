@@ -43,7 +43,11 @@ composer install
 
 ### 3. Setup .env
 
-Clone .env.example or just rename it to .env then fill in the details & don't forget to setup your DB.
+Clone .env from the link below & don't forget to setup your DB.
+
+```
+https://drive.google.com/drive/folders/1MbnCJRPoESFdewr6AiuL7mlTfnelu0zn?usp=sharing
+```
 
 Then generate app key by running:
 

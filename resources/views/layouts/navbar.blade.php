@@ -1,6 +1,5 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-dark navbar-light border-bottom"
-    style="background: linear-gradient(to right, #1f69c1, #4d2db5);">
+<nav class="main-header navbar navbar-expand navbar-dark navbar-light border-bottom" style="background: linear-gradient(to right, #1f69c1, #4d2db5);">
 
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -8,8 +7,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ route('dashboard') }}" class="nav-link"
-                style="font-weight: bold; font-size: 18px; color: #fff;">RESTO</a>
+            <a href="{{ route('dashboard') }}" class="nav-link" style="font-weight: bold; font-size: 18px; color: #fff;">RESTO</a>
         </li>
     </ul>
 
@@ -19,13 +17,10 @@
 
         <!-- User Dropdown Menu -->
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="d-flex align-items-center">
-                    <img src="{{ asset('image/profil/' . Auth::user()->photo_path) }}" alt="User Image"
-                        class="rounded-circle profile-image"
-                        style="max-width: 35px; max-height: 35px; margin-botton:150px;">
-                    <span style="color: #fff; margin-bottom: 15px;">Hi, {{ Auth::user()->name }}</span>
+                    <img src="{{ asset('image/profil/' . Auth::user()->photo_path) }}" alt="User Image" class="rounded-circle profile-image" style="max-width: 35px; max-height: 35px; ">
+                    <span style="color: #fff; margin-bottom: 15px; margin-left:10px;">Hi, {{ Auth::user()->name }}</span>
                 </div>
 
             </a>
@@ -33,21 +28,20 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                 <!-- Profile Info -->
                 <div class="image d-flex flex-column justify-content-center align-items-center profile-info">
-                    <img src="{{ asset('image/profil/' . Auth::user()->photo_path) }}" alt="User Image"
-                        class="rounded-circle profile-image">
+                    <img src="{{ asset('image/profil/' . Auth::user()->photo_path) }}" alt="User Image" class="rounded-circle profile-image">
                     <span class="profile-name">{{ Auth::user()->name }}</span>
                     <span class="profile-email">{{ Auth::user()->email }}</span>
 
                     <!-- User Role Badge -->
                     <div class="role-badge bg-primary text-white">
                         @if (Auth::user()->role == 0)
-                            Admin
+                        Admin
                         @elseif(Auth::user()->role == 1)
-                            Manager
+                        Manager
                         @elseif(Auth::user()->role == 2)
-                            Kasir
+                        Kasir
                         @else
-                            Unknown Role
+                        Unknown Role
                         @endif
                     </div>
 
@@ -55,8 +49,7 @@
                         <a href="{{ route('profile.show') }}" class="dropdown-item profile-link">
                             <i class="nav-icon fa fa-user"></i> Profile
                         </a>
-                        <a href="javascript:void(0)" class="dropdown-item logout-btn"
-                            onclick="$('#logout-form').submit();">
+                        <a href="javascript:void(0)" class="dropdown-item logout-btn" onclick="$('#logout-form').submit();">
                             <i class="nav-icon fa fa-sign-out" style="color: red;"></i> Logout
                         </a>
                     </div>

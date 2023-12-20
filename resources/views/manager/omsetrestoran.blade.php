@@ -35,8 +35,8 @@
                             <label>Kategori:</label>
                             <select name="category" class="form-select">
                                 <option value="">Pilih Kategori</option>
-                                @foreach ($menu as $m)
-                                <option value="{{ $m->id_kategori }}">{{ $m->kategori->kategori }}</option>
+                                @foreach ($kategori as $m)
+                                <option value="{{ $m->id }}">{{ $m->kategori }}</option>
                                 @endforeach
                             </select>
                         </div>

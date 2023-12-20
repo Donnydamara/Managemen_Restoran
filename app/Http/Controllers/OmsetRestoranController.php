@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DetailPesanan;
 use App\Menu;
+use App\Kategori;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\OmsetExport;
@@ -19,9 +20,11 @@ class OmsetRestoranController extends Controller
     {
         $menu = Menu::with('kategori')->get();
         $detail_pesanan = DetailPesanan::all();
+        $kategori = Kategori::all();
 
         return view('manager.omsetrestoran', [
             'menu' => $menu,
+            'kategori' => $kategori,
             'detail_pesanan' => $detail_pesanan,
         ]);
     }
@@ -50,9 +53,13 @@ class OmsetRestoranController extends Controller
         $category = $request->input('category');
 
         $menu = Menu::with('kategori')->get();
+        $kategori = Kategori::all();
         $detail_pesanan = DetailPesanan::query();
 
-        if ($category && !$start_date && !$end_date) {
+        if ((!$category && !$start_date && !$end_date)) {
+            // No filter applied, retrieve all data
+            $detail_pesanan = DetailPesanan::all();
+        } elseif ($category && !$start_date && !$end_date) {
             // Filter by category only
             $detail_pesanan->whereHas('menu.kategori', function ($query) use ($category) {
                 $query->where('id', $category);
@@ -72,11 +79,13 @@ class OmsetRestoranController extends Controller
                 });
         }
 
+
         $detail_pesanan = $detail_pesanan->get();
 
         return view('manager.omsetrestoran', [
             'detail_pesanan' => $detail_pesanan,
             'menu' => $menu,
+            'kategori' => $kategori,
         ]);
     }
 
