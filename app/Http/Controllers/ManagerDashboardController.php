@@ -34,6 +34,7 @@ class ManagerDashboardController extends Controller
         $tbl_kategori = Kategori::count();
         $tbl_detail_pesanan = DetailPesanan::count();
 
+
         $data = TipePesanan::whereIn('jenis_pesanan', ['Makan di Tempat', 'Bawa Pulang'])
             ->groupBy('jenis_pesanan')
             ->select('jenis_pesanan', DB::raw('count(*) as jumlah'))
@@ -52,6 +53,7 @@ class ManagerDashboardController extends Controller
         $menuLaris = $results->first();
         $secondMenuLaris = $results->last();
 
+
         $data = MenuPerkategori::select('id_kategori', DB::raw('count(*) as total'))
             ->groupBy('id_kategori')
             ->get();
@@ -60,13 +62,16 @@ class ManagerDashboardController extends Controller
         $menu = Menu::with('kategori')->get();
         $detail_pesanan = DetailPesanan::all();
 
+
         $profitsByDate = [];
         foreach ($detail_pesanan as $detail) {
             $date = $detail->created_at->format('Y-m-d');
             $profitsByDate[$date] = isset($profitsByDate[$date]) ? $profitsByDate[$date] + ($detail->jumlah * $detail->harga) : ($detail->jumlah * $detail->harga);
         }
+        $totalProfits = array_sum($profitsByDate);
 
-        return view('managerdashboard', compact('tbl_menu', 'tbl_kategori', 'tbl_detail_pesanan', 'dataArray', 'menuLaris', 'secondMenuLaris', 'data', 'profitsByDate'));
+        return view('managerdashboard', compact('tbl_menu', 'tbl_kategori', 'tbl_detail_pesanan', 'dataArray', 'menuLaris', 'secondMenuLaris', 'data', 'profitsByDate', 'totalProfits'));
+        // return view('managerdashboard', compact('tbl_menu', 'tbl_kategori', 'tbl_detail_pesanan', 'dataArray', 'menuLaris', 'secondMenuLaris', 'data', 'profitsByDate'));
     }
 
     public function filter(Request $request)
