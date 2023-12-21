@@ -9,6 +9,8 @@ use App\TipePesanan;
 use App\MenuTerlaris;
 use App\MenuPerkategori;
 use App\DetailPesanan;
+use App\Pesanan;
+
 use Illuminate\Support\Facades\DB;
 
 class ManagerDashboardController extends Controller
@@ -33,6 +35,7 @@ class ManagerDashboardController extends Controller
         $tbl_menu = Menu::count();
         $tbl_kategori = Kategori::count();
         $tbl_detail_pesanan = DetailPesanan::count();
+        $tbl_pesanan = Pesanan::count();
 
 
         $data = TipePesanan::whereIn('jenis_pesanan', ['Makan di Tempat', 'Bawa Pulang'])
@@ -70,7 +73,10 @@ class ManagerDashboardController extends Controller
         }
         $totalProfits = array_sum($profitsByDate);
 
-        return view('managerdashboard', compact('tbl_menu', 'tbl_kategori', 'tbl_detail_pesanan', 'dataArray', 'menuLaris', 'secondMenuLaris', 'data', 'profitsByDate', 'totalProfits'));
+        $pesanan = Pesanan::select('no_pesanan', 'jenis_pembayaran', 'jenis_pesanan', 'created_at')->get();
+      
+
+        return view('managerdashboard', compact('tbl_menu', 'tbl_kategori', 'tbl_detail_pesanan', 'dataArray', 'menuLaris','secondMenuLaris','pesanan' ,'data', 'profitsByDate', 'totalProfits'));
         // return view('managerdashboard', compact('tbl_menu', 'tbl_kategori', 'tbl_detail_pesanan', 'dataArray', 'menuLaris', 'secondMenuLaris', 'data', 'profitsByDate'));
     }
 
@@ -118,4 +124,8 @@ class ManagerDashboardController extends Controller
             'profitsByDate' => $profitsByDate,
         ]);
     }
+
+
+
+
 }
