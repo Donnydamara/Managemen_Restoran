@@ -94,9 +94,9 @@
 												<tr>
 													<td> {{ $loop->index + 1 }} </td>
 													<td> {{ $detail_pesanans->nama_menu }} </td>
-													<td> {{ $detail_pesanans->harga }} </td>
+													<td> Rp. {{ number_format($detail_pesanans->harga) }} </td>
 													<td> {{ $detail_pesanans->jumlah }} </td>
-													<td> {{ $detail_pesanans->subtotal }} </td>
+													<td> Rp. {{ number_format($detail_pesanans->subtotal) }} </td>
 													<td>
 														<a href="{{ route('pesanan.destroy', ['id' => $detail_pesanans->id_detail_pesanan]) }}" class="btn btn-danger btn-md text-white" role="button"><i class="fas fa-trash-can"></i> Hapus</a>
 													</td>
