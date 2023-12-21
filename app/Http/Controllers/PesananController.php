@@ -94,7 +94,7 @@ class PesananController extends Controller
     public function cari(Request $request)
     {
         $menu = Menu::where('nama_menu','like', "%{$request['cari']}%")->get();
-        // $kategori = Kategori::where('kategori','like', "%{$request['cari']}%")->get();
+        
         $detail_pesanan = [];
         $no_pesanan = '';
         $id_pesanan = '';

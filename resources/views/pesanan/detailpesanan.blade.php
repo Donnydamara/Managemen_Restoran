@@ -47,6 +47,9 @@
 										</tr>
 									</thead>
 									<tbody>
+									@php
+									$grandTotal = 0;
+									@endphp
 										@foreach ($detail_pesanan as $detail_pesanans)
 										<tr>
 											<td> {{ $loop->index + 1 }} </td>
@@ -55,7 +58,14 @@
 											<td> {{ $detail_pesanans->jumlah }} </td>
 											<td> Rp. {{ number_format($detail_pesanans->subtotal) }}</td>
 										</tr>
+										@php
+											$grandTotal += ($detail_pesanans->subtotal);
+											@endphp
 										@endforeach
+										<tr>
+											<th colspan="4">Grand Total</th>
+											<td>Rp. {{ number_format($grandTotal) }}</td>
+										</tr>
 									</tbody>
 								</table>
 							</div>

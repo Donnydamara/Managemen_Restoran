@@ -90,6 +90,9 @@
 												</tr>
 											</thead>
 											<tbody>
+											@php
+											$grandTotal = 0;
+											@endphp
 												@foreach ($detail_pesanan as $detail_pesanans)
 												<tr>
 													<td> {{ $loop->index + 1 }} </td>
@@ -101,7 +104,15 @@
 														<a href="{{ route('pesanan.destroy', ['id' => $detail_pesanans->id_detail_pesanan]) }}" class="btn btn-danger btn-md text-white" role="button"><i class="fas fa-trash-can"></i> Hapus</a>
 													</td>
 												</tr>
+												@php
+												$grandTotal += ($detail_pesanans->subtotal);
+												@endphp
 												@endforeach
+												<tr>
+													<th colspan="4">Grand Total</th>
+													<td>Rp. {{ number_format($grandTotal) }}</td>
+													<td></td>
+												</tr>
 											</tbody>
 										</table>
 									</div>
@@ -122,7 +133,7 @@
 											<option value="Edc">Edc</option>
 											<option value="Qris">Qris</option>
 										</select></br></br>
-										<button class="btn btn-primary" type="submit"><i class="fa fa-check"></i> Proses Pesanan</button>
+										<button onclick="return confirm('Yakin ingin proses pesanan ini?')" class="btn btn-primary" type="submit"><i class="fa fa-check"></i> Proses Pesanan</button>
 									</form>
 									@endif
 								</div>
