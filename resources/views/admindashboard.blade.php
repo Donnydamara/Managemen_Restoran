@@ -25,8 +25,8 @@
 
         <div class="row">
             <div class="col-md-3 col-sm-6">
-                <div class="info-box">
-                    <span class="info-box-icon bg-info elevation-1">
+                <div class="info-box bg-info">
+                    <span class="info-box-icon">
                         <img src="{{ asset('img/man.png') }}" alt="Logo">
                     </span>
                     <div class="info-box-content">
@@ -36,8 +36,8 @@
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
-                <div class="info-box">
-                    <span class="info-box-icon bg-success elevation-1">
+                <div class="info-box bg-success">
+                    <span class="info-box-icon">
                         <img src="{{ asset('img/history-book.png') }}" alt="Logo">
                     </span>
                     <div class="info-box-content">
@@ -47,8 +47,8 @@
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
-                <div class="info-box">
-                    <span class="info-box-icon bg-warning elevation-1">
+                <div class="info-box bg-warning">
+                    <span class="info-box-icon">
                         <img src="{{ asset('img/menu.png') }}" alt="Logo">
                     </span>
                     <div class="info-box-content">
@@ -58,8 +58,8 @@
                 </div>
             </div>
             <div class="col-md-3 col-sm-6">
-                <div class="info-box">
-                    <span class="info-box-icon bg-warning elevation-1">
+                <div class="info-box bg-warning">
+                    <span class="info-box-icon">
                         <img src="{{ asset('img/fast-food.png') }}" alt="Logo">
                     </span>
                     <div class="info-box-content">
@@ -175,10 +175,10 @@
                                 <table class="table table-bordered" id="tbl-menu">
                                     <thead>
                                         <tr class="text-center">
-                                            <th>Foto</th>
-                                            <th>Kategori</th>
-                                            <th>Menu</th>
-                                            <th>Harga</th>
+                                            <td>Foto</td>
+                                            <td>Kategori</td>
+                                            <td>Menu</td>
+                                            <td>harga</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -220,12 +220,48 @@
 
 <style>
     .info-box {
-        background: #fff;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-        transition: all 0.3s;
+        cursor: pointer;
+    }
+
+    .info-box:hover {
+        transform: scale(1.05);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .info-box .info-box-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .info-box .info-box-content {
+        text-align: center;
+    }
+
+    .bg-info {
+        background-color: #17a2b8 !important;
+    }
+
+    .bg-success {
+        background-color: #28a745 !important;
+    }
+
+    .bg-warning {
+        background-color: #ffc107 !important;
+    }
+
+    .info-box-text {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+    .info-box-number {
+        display: block;
+        font-size: 24px;
+        font-weight: bold;
+        color: #000;
     }
 
     .info-box:hover {
@@ -242,39 +278,9 @@
         text-align: center;
     }
 
-    .info-box-text {
-        display: block;
-        font-size: 14px;
-        margin-bottom: 5px;
-        color: #333;
-    }
-
-    .info-box-number {
-        display: block;
-        font-size: 24px;
-        font-weight: bold;
-        color: #007bff;
-    }
-
-    .bg-info {
-        background-color: #17a2b8 !important;
-    }
-
-    .bg-success {
-        background-color: #28a745 !important;
-    }
-
-    .bg-warning {
-        background-color: #ffc107 !important;
-    }
-
     .col-md-3 {
         flex: 0 0 25%;
         max-width: 25%;
-    }
-
-    .img-dashboard {
-        text-align: center;
     }
 </style>
 @endsection
