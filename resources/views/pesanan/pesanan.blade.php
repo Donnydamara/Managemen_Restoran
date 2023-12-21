@@ -90,9 +90,9 @@
 												</tr>
 											</thead>
 											<tbody>
-											@php
-											$grandTotal = 0;
-											@endphp
+												@php
+												$grandTotal = 0;
+												@endphp
 												@foreach ($detail_pesanan as $detail_pesanans)
 												<tr>
 													<td> {{ $loop->index + 1 }} </td>
@@ -110,8 +110,8 @@
 												@endforeach
 												<tr>
 													<th colspan="4">Grand Total</th>
-													<td>Rp. {{ number_format($grandTotal) }}</td>
-													<td></td>
+													<td colspan="2">Rp. {{ number_format($grandTotal) }}</td>
+
 												</tr>
 											</tbody>
 										</table>
