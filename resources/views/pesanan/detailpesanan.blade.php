@@ -51,9 +51,9 @@
 										<tr>
 											<td> {{ $loop->index + 1 }} </td>
 											<td> {{ $detail_pesanans->nama_menu }} </td>
-											<td> {{ $detail_pesanans->harga }} </td>
+											<td> Rp. {{ number_format($detail_pesanans->harga) }} </td>
 											<td> {{ $detail_pesanans->jumlah }} </td>
-											<td> {{ $detail_pesanans->subtotal }} </td>
+											<td> Rp. {{ number_format($detail_pesanans->subtotal) }}</td>
 										</tr>
 										@endforeach
 									</tbody>

@@ -92,7 +92,7 @@
                                                                 Kategori menu belum dimasukkan
                                                                 @endif
                                                             </span></p>
-                                                        <p>Harga: <span> {{ $m->harga }}</span></p>
+                                                        <p>Harga: <span> Rp. {{ number_format($m->harga) }}</span></p>
                                                         <p>Deskripsi: <span> {{ $m->deskripsi }}</span></p>
                                                     </div>
                                                 </div>
