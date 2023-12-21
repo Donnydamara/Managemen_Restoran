@@ -21,7 +21,7 @@
         <div class="col-md-8 ">
             <div class="card inf-content">
                 <div class="card-body">
-                    <h5 class="card-title">Information</h5>
+                    <h5 class="card-title">Informasi</h5>
                     <table class="table table-user-information">
                         <tbody>
                             <tr>
@@ -33,7 +33,7 @@
                                 <td>{{ $user->email }}</td>
                             </tr>
                             <tr>
-                                <td><strong>Nomber HP</strong></td>
+                                <td><strong>Nomor HP</strong></td>
                                 <td>{{ $user->no_hp }}</td>
                             </tr>
                             <tr>
