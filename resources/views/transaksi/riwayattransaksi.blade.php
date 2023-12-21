@@ -61,9 +61,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                $grandTotal = 0;
-                                @endphp
+                            @php
+                            $grandTotal = 0;
+                            @endphp
 
                                 @foreach ($pesanan as $pesanans)
                                 <tr>
@@ -80,7 +80,7 @@
 
                                 @endforeach
 
-                                <tr style="background-color: #2c3e50; color: white;">
+                                <tr>
                                     <th colspan="5">Grand Total</th>
                                     <td>Rp. {{ number_format($grandTotal) }}</td>
                                 </tr>

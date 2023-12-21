@@ -175,10 +175,10 @@
                                 <table class="table table-bordered" id="tbl-menu">
                                     <thead>
                                         <tr class="text-center">
-                                            <td>Foto</td>
-                                            <td>Kategori</td>
-                                            <td>Menu</td>
-                                            <td>harga</td>
+                                            <th>Foto</th>
+                                            <th>Kategori</th>
+                                            <th>Menu</th>
+                                            <th>Harga</th>
                                         </tr>
                                     </thead>
                                     <tbody>
