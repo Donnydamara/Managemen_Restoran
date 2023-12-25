@@ -12,7 +12,7 @@
                         <label for="text4" class="col-4 col-form-label">Foto</label>
                         <div class="mb-3">
                             <div class="col-8">
-                                <input id="text4" name="photo" type="file"
+                                <input id="text4" name="photo" type="file" onchange="previewImage(this)"
                                     class="form-control @error('photo') is-invalid @enderror">
                                 @error('photo')
                                     <div class="invalid-feedback">
@@ -22,8 +22,9 @@
 
                                 @if ($user->photo_path)
                                     <div class="mt-2">
-                                        <img src="{{ asset('image/profil/' . $user->photo_path) }}" alt="Profile Photo"
-                                            class="rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
+                                        <img id="image-preview" src="{{ asset('image/profil/' . $user->photo_path) }}"
+                                            alt="Profile Photo" class="rounded-circle"
+                                            style="width: 200px; height: 200px; object-fit: cover;">
                                     </div>
                                 @else
                                     <p>No photo available</p>
@@ -141,4 +142,23 @@
         </div>
         <!-- /.login-card-body -->
     </div>
+    <script>
+        function previewImage(input) {
+            var preview = document.getElementById('image-preview');
+            var file = input.files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function() {
+                preview.src = reader.result;
+                preview.style.display = 'block';
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = '';
+                preview.style.display = 'none';
+            }
+        }
+    </script>
 @endsection

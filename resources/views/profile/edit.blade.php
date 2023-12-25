@@ -26,7 +26,7 @@
 
                         <div class="mb-3">
                             <label for="photo" class="custom-file-upload">
-                                <img id="previewImage" src="{{ asset('image/profil/' . $user->photo_path) }}"
+                                <img id="image-preview" src="{{ asset('image/profil/' . $user->photo_path) }}"
                                     alt="Profile Photo" class="rounded-circle"
                                     style="width: 300px; height: 300px; object-fit: cover;">
                                 <span class="edit-icon" onclick="triggerFileInput()"><i
@@ -43,11 +43,7 @@
                                 </div>
                             @enderror
 
-                            <div class="mt-2">
-                                @if (!$user->photo_path)
-                                    <p>No photo available</p>
-                                @endif
-                            </div>
+
                         </div>
 
 
@@ -174,18 +170,20 @@
 
     <script>
         function previewImage(input) {
-            var preview = document.getElementById('previewImage');
+            var preview = document.getElementById('image-preview');
             var file = input.files[0];
             var reader = new FileReader();
 
             reader.onloadend = function() {
                 preview.src = reader.result;
-            };
+                preview.style.display = 'block';
+            }
 
             if (file) {
                 reader.readAsDataURL(file);
             } else {
-                preview.src = "{{ asset('image/profil/' . $user->photo_path) }}";
+                preview.src = '';
+                preview.style.display = 'none';
             }
         }
     </script>
