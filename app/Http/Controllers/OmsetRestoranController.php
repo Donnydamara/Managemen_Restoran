@@ -47,10 +47,14 @@ class OmsetRestoranController extends Controller
 
     public function filter(Request $request)
     {
-
         $start_date = $request->input('start_date');
         $end_date = $request->input('end_date');
         $category = $request->input('category');
+
+        // Validate that at least one of the filters is filled
+        if (!$start_date && !$end_date && !$category) {
+            return redirect()->back()->with('error', 'Please fill at least one filter.');
+        }
 
         $menu = Menu::with('kategori')->get();
         $kategori = Kategori::all();
