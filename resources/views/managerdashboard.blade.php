@@ -76,7 +76,7 @@
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="box bg-white">
-                        <div id="chart2a" style="width:100%; max-width:280px; height:220px;"></div>
+                        <div id="chart2a" style="width:100%; max-width:300px; height:220px;"></div>
                         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                         <script>
                             google.charts.load('current', {
@@ -158,7 +158,9 @@
                                 data.addColumn('number', 'Jumlah');
                                 data.addRows([
                                     @foreach ($data as $item)
-                                        ['{{ $item->id_kategori }}', {{ $item->total }}],
+                                        ['{{ $item->id_kategori == 6 ? 'Makanan' : ($item->id_kategori == 7 ? 'Minuman' : ($item->id_kategori == 8 ? 'Cemilan' : $item->id_kategori)) }}',
+                                            {{ $item->total }}
+                                        ],
                                     @endforeach
                                 ]);
 
@@ -173,10 +175,11 @@
                         </script>
 
                         <body>
-                            <div id="chart_div" style="width: 280px; height: 220px;"></div>
+                            <div id="chart_div" style="width: 300px; height: 220px;"></div>
                         </body>
                     </div>
                 </div>
+
 
 
                 <div class="col-12 col-sm-9">
@@ -225,30 +228,30 @@
     </div>
 
     <div class="card-body">
-    <div class="box bg-white">
-        <h4 class="text-center">Riwayat Transaksi</h4>
-        <table class="table table-hover table-bordered text-center" style="border: 1px solid #ccc;" id="data-table">
-            <thead>
-                <tr>
-                    <th>No. Pesanan</th>
-                    <th>Jenis Pesanan</th>
-                    <th>Jenis Pembayaran</th>
-                    <th>Tanggal Transaksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($pesanan as $item)
+        <div class="box bg-white">
+            <h4 class="text-center">Riwayat Transaksi</h4>
+            <table class="table table-hover table-bordered text-center" style="border: 1px solid #ccc;" id="data-table">
+                <thead>
                     <tr>
-                        <td>{{ $item->no_pesanan }}</td>
-                        <td>{{ $item->jenis_pembayaran }}</td>
-                        <td>{{ $item->jenis_pesanan }}</td>
-                        <td>{{ $item->created_at }}</td>
+                        <th>No. Pesanan</th>
+                        <th>Jenis Pesanan</th>
+                        <th>Jenis Pembayaran</th>
+                        <th>Tanggal Transaksi</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($pesanan as $item)
+                        <tr>
+                            <td>{{ $item->no_pesanan }}</td>
+                            <td>{{ $item->jenis_pembayaran }}</td>
+                            <td>{{ $item->jenis_pesanan }}</td>
+                            <td>{{ $item->created_at }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 
 
 
@@ -257,9 +260,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* Add your custom styles here */
-        .box{
+        .box {}
 
-        }
         .info-box {
             cursor: pointer;
         }
