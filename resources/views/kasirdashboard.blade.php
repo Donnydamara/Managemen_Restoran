@@ -73,13 +73,13 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-hover" id="data-table">
+                                <table class="table table-bordered table-hover text-center" id="data-table">
                                     <thead>
                                         <tr>
                                             <th>Foto</th>
                                             <th>Nama Menu</th>
                                             <th>Deskripsi</th>
-                                            <th>Harga</th> <!-- Perbaikan tag th -->
+                                            <th>Harga (Rp.)</th> <!-- Perbaikan tag th -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -94,7 +94,7 @@
                                             </td>
                                             <td>{{ $menu->nama_menu }}</td>
                                             <td>{{ $menu->deskripsi }}</td>
-                                            <td>Rp. {{ number_format ($menu->harga) }}</td>
+                                            <td class="text-right">{{ number_format ($menu->harga) }}</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -118,12 +118,12 @@
                             <div class="table-responsive">
                                 <table class="table table-hover table-bordered text-center" style="border: 1px solid #ccc;" id="transaksi-table">
                                     <thead>
-                                        <tr style="background-color: #2c3e50; color: white;">
+                                        <tr>
                                             <th>No. Pesanan</th>
                                             <th>Jenis Pesanan</th>
                                             <th>Jenis Pembayaran</th>
                                             <th>Tanggal Transaksi</th>
-                                            <th>Subtotal</th>
+                                            <th>Subtotal (Rp.)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -133,7 +133,7 @@
                                             <td>{{ $transaksi->jenis_pesanan }}</td>
                                             <td>{{ $transaksi->jenis_pembayaran }}</td>
                                             <td>{{ date('d F Y', strtotime($transaksi->created_at)) }}</td>
-                                            <td>Rp. {{ number_format($transaksi->total_subtotal) }} </td>
+                                            <td class="text-right">{{ number_format($transaksi->total_subtotal) }} </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
