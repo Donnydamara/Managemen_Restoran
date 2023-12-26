@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Pesanan;
 use App\DetailPesanan;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class RiwayatTransaksiController extends Controller
 {
@@ -17,31 +18,11 @@ class RiwayatTransaksiController extends Controller
      */
     public function index()
     {
-        // $pesanan = DB::table('tbl_pesanan')
-        //     ->join('tbl_detail_pesanan', 'tbl_pesanan.id_pesanan', '=', 'tbl_detail_pesanan.id_pesanan')
-        //     ->join('users', 'tbl_pesanan.id_user', '=', 'users.id')
-        //     ->select(
-        //         'tbl_pesanan.no_pesanan',
-        //         'tbl_pesanan.jenis_pesanan',
-        //         'tbl_pesanan.jenis_pembayaran',
-        //         'users.name',
-        //         'tbl_pesanan.created_at',
-        //         DB::raw('SUM(tbl_detail_pesanan.subtotal) as total_subtotal')
-        //     )
-        //     ->where('tbl_pesanan.status', 1)
-        //     ->groupBy('tbl_pesanan.no_pesanan', 'tbl_pesanan.jenis_pesanan', 'tbl_pesanan.jenis_pembayaran', 'users.name' ,'tbl_pesanan.created_at')
-        //     ->get();
+        // Get today's date
+        $today = Carbon::now()->format('Y-m-d');
 
-        return view('transaksi.riwayattransaksi', [
-            'pesanan' => [],
-        ]);
-    }
-
-    public function filter(Request $request)
-    {
-        $pesanan = Pesanan::where('created_at', 'like', "%{$request['filter']}%")->get();
-        $pesanan = DB::table('tbl_pesanan')
-            ->join('tbl_detail_pesanan', 'tbl_pesanan.id_pesanan', '=', 'tbl_detail_pesanan.id_pesanan')
+        // Retrieve data for today
+        $pesanan = Pesanan::join('tbl_detail_pesanan', 'tbl_pesanan.id_pesanan', '=', 'tbl_detail_pesanan.id_pesanan')
             ->join('users', 'tbl_pesanan.id_user', '=', 'users.id')
             ->select(
                 'tbl_pesanan.no_pesanan',
@@ -52,7 +33,29 @@ class RiwayatTransaksiController extends Controller
                 DB::raw('SUM(tbl_detail_pesanan.subtotal) as total_subtotal')
             )
             ->where('tbl_pesanan.status', 1)
-            ->where('tbl_pesanan.created_at', 'like', "%{$request['filter']}%")
+            ->whereDate('tbl_pesanan.created_at', $today)
+            ->groupBy('tbl_pesanan.no_pesanan', 'tbl_pesanan.jenis_pesanan', 'tbl_pesanan.jenis_pembayaran', 'users.name', 'tbl_pesanan.created_at')
+            ->get();
+
+        return view('transaksi.riwayattransaksi', [
+            'pesanan' => $pesanan,
+        ]);
+    }
+
+    public function filter(Request $request)
+    {
+        $pesanan = Pesanan::join('tbl_detail_pesanan', 'tbl_pesanan.id_pesanan', '=', 'tbl_detail_pesanan.id_pesanan')
+            ->join('users', 'tbl_pesanan.id_user', '=', 'users.id')
+            ->select(
+                'tbl_pesanan.no_pesanan',
+                'tbl_pesanan.jenis_pesanan',
+                'tbl_pesanan.jenis_pembayaran',
+                'users.name',
+                'tbl_pesanan.created_at',
+                DB::raw('SUM(tbl_detail_pesanan.subtotal) as total_subtotal')
+            )
+            ->where('tbl_pesanan.status', 1)
+            ->whereDate('tbl_pesanan.created_at', 'like', "%{$request->filter}%")
             ->groupBy('tbl_pesanan.no_pesanan', 'tbl_pesanan.jenis_pesanan', 'tbl_pesanan.jenis_pembayaran', 'users.name', 'tbl_pesanan.created_at')
             ->get();
 
@@ -63,7 +66,13 @@ class RiwayatTransaksiController extends Controller
 
     public function filtersubmit(Request $request)
     {
-        return redirect(route('transaksi.filter', ['filter' => $request['filter']]));
+        // Validate the incoming request data
+        $request->validate([
+            'filter' => 'required|date',
+        ]);
+
+        // Redirect to the filter method with the filter parameter
+        return redirect()->route('transaksi.filter', ['filter' => $request->input('filter')]);
     }
 
     /**
