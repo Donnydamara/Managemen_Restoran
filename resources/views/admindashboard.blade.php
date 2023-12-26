@@ -178,7 +178,7 @@
                                             <td>Foto</td>
                                             <td>Kategori</td>
                                             <td>Menu</td>
-                                            <td>harga</td>
+                                            <td>Harga</td>
                                         </tr>
                                     </thead>
                                     <tbody>

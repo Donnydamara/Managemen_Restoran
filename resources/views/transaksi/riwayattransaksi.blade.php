@@ -57,7 +57,7 @@
                                     <th>Jenis Pembayaran</th>
                                     <th>User</th>
                                     <th>Tanggal Transaksi</th>
-                                    <th>Subtotal</th>
+                                    <th>Subtotal (Rp.)</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -72,7 +72,7 @@
                                     <td> {{ $pesanans->jenis_pembayaran }} </td>
                                     <td> {{ $pesanans->name }} </td>
                                     <td> {{ date('d F Y', strtotime($pesanans->created_at))  }} </td>
-                                    <td>Rp. {{ number_format($pesanans->total_subtotal) }} </td>
+                                    <td class="text-right"> {{ number_format($pesanans->total_subtotal) }} </td>
                                 </tr>
                                 @php
                                 $grandTotal += $pesanans->total_subtotal;
@@ -81,8 +81,8 @@
                                 @endforeach
 
                                 <tr>
-                                    <th colspan="5">Grand Total</th>
-                                    <td>Rp. {{ number_format($grandTotal) }}</td>
+                                    <th colspan="5">Grand Total (Rp.)</th>
+                                    <td class="text-right"> {{ number_format($grandTotal) }} </td>
                                 </tr>
                             </tbody>
                         </table>

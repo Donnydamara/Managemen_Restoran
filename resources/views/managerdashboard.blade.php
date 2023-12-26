@@ -52,7 +52,7 @@
                         </span>
                         <div class="info-box-content">
                             <span class="info-box-text">Profit</span>
-                            <span class="info-box-number">{{ $totalProfits }}</span>
+                            <span class="info-box-number">Rp. {{ number_format($totalProfits) }}</span>
                         </div>
                     </div>
                 </div>

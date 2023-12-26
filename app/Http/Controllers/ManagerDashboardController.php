@@ -34,7 +34,7 @@ class ManagerDashboardController extends Controller
     {
         $tbl_menu = Menu::count();
         $tbl_kategori = Kategori::count();
-        $tbl_detail_pesanan = DetailPesanan::count();
+        $tbl_detail_pesanan = Pesanan::where('status', 1)->count();
         $tbl_pesanan = Pesanan::count();
 
 
@@ -73,7 +73,9 @@ class ManagerDashboardController extends Controller
         }
         $totalProfits = array_sum($profitsByDate);
 
-        $pesanan = Pesanan::select('no_pesanan', 'jenis_pembayaran', 'jenis_pesanan', 'created_at')->get();
+        $pesanan = Pesanan::select('no_pesanan', 'jenis_pembayaran', 'jenis_pesanan', 'created_at')
+        ->where('tbl_pesanan.status', 1)
+        ->get();
       
 
         return view('managerdashboard', compact('tbl_menu', 'tbl_kategori', 'tbl_detail_pesanan', 'dataArray', 'menuLaris','secondMenuLaris','pesanan' ,'data', 'profitsByDate', 'totalProfits'));

@@ -41,9 +41,9 @@
 										<tr style="background-color: #2c3e50; color: white;">
 											<th>No.</th>
 											<th>Menu</th>
-											<th>Harga</th>
+											<th>Harga (Rp.)</th>
 											<th>Jumlah</th>
-											<th>Subtotal</th>
+											<th>Subtotal (Rp.)</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -54,17 +54,17 @@
 										<tr>
 											<td> {{ $loop->index + 1 }} </td>
 											<td> {{ $detail_pesanans->nama_menu }} </td>
-											<td> Rp. {{ number_format($detail_pesanans->harga) }} </td>
+											<td class="text-right"> {{ number_format($detail_pesanans->harga) }} </td>
 											<td> {{ $detail_pesanans->jumlah }} </td>
-											<td> Rp. {{ number_format($detail_pesanans->subtotal) }}</td>
+											<td class="text-right"> {{ number_format($detail_pesanans->subtotal) }}</td>
 										</tr>
 										@php
 											$grandTotal += ($detail_pesanans->subtotal);
 											@endphp
 										@endforeach
 										<tr>
-											<th colspan="4">Grand Total</th>
-											<td>Rp. {{ number_format($grandTotal) }}</td>
+											<th colspan="4">Grand Total (Rp.)</th>
+											<td class="text-right"> {{ number_format($grandTotal) }}</td>
 										</tr>
 									</tbody>
 								</table>
